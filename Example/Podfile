@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SIBase_Example' do
+  pod 'SIBase', :path => '../'
+
+  target 'SIBase_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
