@@ -1,0 +1,6 @@
+framework module SIRequestCenter {
+  umbrella header "SIRequestCenter-umbrella.h"
+
+  export *
+  module * { export * }
+}

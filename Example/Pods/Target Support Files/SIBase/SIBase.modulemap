@@ -1,0 +1,6 @@
+framework module SIBase {
+  umbrella header "SIBase-umbrella.h"
+
+  export *
+  module * { export * }
+}

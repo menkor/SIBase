@@ -1,0 +1,111 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - Masonry (1.1.0)
+  - MJRefresh (3.1.15.3)
+  - ReactiveObjC (3.1.0)
+  - SAMKeychain (1.5.3)
+  - SIBase (0.1.11):
+    - AFNetworking
+    - ReactiveObjC
+    - SIComponents
+    - SIRequestCenter
+    - SIRequestKit
+    - SIUtils
+  - SIComponents (0.1.5):
+    - SIUIKit
+  - SIRequestCenter (0.1.9):
+    - AFNetworking
+  - SIRequestKit (0.4.21):
+    - SIRequestCenter
+  - SIUIKit (0.1.19):
+    - Masonry
+    - MJRefresh
+    - YCEasyTool
+  - SIUtils (0.1.5):
+    - SAMKeychain
+    - YYKit
+  - YCEasyTool (0.2.4):
+    - YCEasyTool/Forever (= 0.2.4)
+    - YCEasyTool/Polling (= 0.2.4)
+    - YCEasyTool/Property (= 0.2.4)
+    - YCEasyTool/Tools (= 0.2.4)
+    - YCEasyTool/UI (= 0.2.4)
+  - YCEasyTool/Forever (0.2.4):
+    - YCEasyTool/Property
+  - YCEasyTool/Polling (0.2.4)
+  - YCEasyTool/Property (0.2.4)
+  - YCEasyTool/Tools (0.2.4)
+  - YCEasyTool/UI (0.2.4):
+    - YCEasyTool/UI/CollectionView (= 0.2.4)
+    - YCEasyTool/UI/Grid (= 0.2.4)
+    - YCEasyTool/UI/PopMenu (= 0.2.4)
+    - YCEasyTool/UI/Segment (= 0.2.4)
+    - YCEasyTool/UI/TabBarController (= 0.2.4)
+    - YCEasyTool/UI/TreeMenu (= 0.2.4)
+  - YCEasyTool/UI/CollectionView (0.2.4)
+  - YCEasyTool/UI/Grid (0.2.4):
+    - YCEasyTool/Tools
+    - YCEasyTool/UI/CollectionView
+  - YCEasyTool/UI/PopMenu (0.2.4)
+  - YCEasyTool/UI/Segment (0.2.4)
+  - YCEasyTool/UI/TabBarController (0.2.4)
+  - YCEasyTool/UI/TreeMenu (0.2.4)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
+
+DEPENDENCIES:
+  - SIBase (from `../`)
+
+SPEC REPOS:
+  "git@git.superid.cn:iOS/SISpecs.git":
+    - SIComponents
+    - SIRequestCenter
+    - SIRequestKit
+    - SIUIKit
+    - SIUtils
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - Masonry
+    - MJRefresh
+    - ReactiveObjC
+    - SAMKeychain
+    - YCEasyTool
+    - YYKit
+
+EXTERNAL SOURCES:
+  SIBase:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
+  SIBase: f32c8b0855d76ddeb68c6c13d36258a26a4e7cfe
+  SIComponents: ecfb258491dd7b1661948c18f3f3f4705dd85a42
+  SIRequestCenter: f86e21e53efb28dc83466f7ad1730841249bc830
+  SIRequestKit: b2fd3d0ea2f841cdf3d31f21da918b27ef7e278d
+  SIUIKit: b538116bea5d15d594b686d888b47a04a4eafda2
+  SIUtils: b15d99f039349eb3c7aeaf9d5176e55cfbe01511
+  YCEasyTool: b2c63ded39fa586b129682abf03519c2849bd8b4
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+
+PODFILE CHECKSUM: 6d3a1291a31b1fc545013e9ad7d2a87b6e7dd26a
+
+COCOAPODS: 1.5.0

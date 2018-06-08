@@ -1,0 +1,47 @@
+{
+  "name": "SIBase",
+  "version": "0.1.11",
+  "summary": "A short description of SIBase.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "http://superid.cn:81/iOS/SIBase",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ungacy": "yetao@superid.cn"
+  },
+  "source": {
+    "git": "git@git.superid.cn:iOS/SIBase.git",
+    "tag": "0.1.11",
+    "submodules": true
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "4.1"
+  },
+  "source_files": "SIBase/Classes/*.{h,m,swift}",
+  "public_header_files": "SIBase/Classes/*.h",
+  "dependencies": {
+    "SIUtils": [
+
+    ],
+    "SIComponents": [
+
+    ],
+    "SIRequestKit": [
+
+    ],
+    "AFNetworking": [
+
+    ],
+    "SIRequestCenter": [
+
+    ],
+    "ReactiveObjC": [
+
+    ]
+  }
+}

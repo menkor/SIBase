@@ -1,0 +1,6 @@
+framework module SIRequestKit {
+  umbrella header "SIRequestKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
