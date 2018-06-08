@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SIBase'
-    s.version          = '0.1.12'
+    s.version          = '0.1.13'
     s.summary          = 'A short description of SIBase.'
     
     # This description is used to generate tags and improve search results.
@@ -24,13 +24,10 @@ Pod::Spec.new do |s|
     s.homepage         = 'http://superid.cn:81/iOS/SIBase'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'ungacy' => 'yetao@superid.cn' }
-    s.source = {
-        :git => 'git@git.superid.cn:iOS/SIBase.git',
-        :tag => s.version.to_s,
-        :submodules => true
-    }
+    s.source = { :git => 'git@git.superid.cn:iOS/SIBase.git', :tag => s.version.to_s }
     
     s.ios.deployment_target = '9.0'
+    s.requires_arc = true
     s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
     s.source_files = 'SIBase/Classes/*.{h,m,swift}'
     s.public_header_files = 'SIBase/Classes/*.h'
@@ -40,6 +37,5 @@ Pod::Spec.new do |s|
     s.dependency 'AFNetworking'
     s.dependency 'SIRequestCenter'
     s.dependency 'ReactiveObjC'
-    
     
 end

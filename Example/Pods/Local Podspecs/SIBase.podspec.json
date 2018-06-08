@@ -13,12 +13,12 @@
   },
   "source": {
     "git": "git@git.superid.cn:iOS/SIBase.git",
-    "tag": "0.1.12",
-    "submodules": true
+    "tag": "0.1.12"
   },
   "platforms": {
     "ios": "9.0"
   },
+  "requires_arc": true,
   "pod_target_xcconfig": {
     "SWIFT_VERSION": "4.1"
   },
