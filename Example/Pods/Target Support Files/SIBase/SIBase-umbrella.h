@@ -19,10 +19,7 @@
 #import "SINavigationController.h"
 #import "SIPageViewController.h"
 #import "SITableViewController.h"
-#import "SITableViewModel.h"
-#import "SITableVMViewController.h"
 #import "SIViewController.h"
-#import "SIViewModel.h"
 
 FOUNDATION_EXPORT double SIBaseVersionNumber;
 FOUNDATION_EXPORT const unsigned char SIBaseVersionString[];
