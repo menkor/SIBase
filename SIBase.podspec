@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SIBase'
-    s.version          = '0.1.16'
-    s.summary          = 'A short description of SIBase.'
+    s.version          = '0.1.17'
+    s.summary          = 'SIBase.'
     
     # This description is used to generate tags and improve search results.
     #   * Think: What does it do? Why did you write it? What is the focus?
@@ -33,6 +33,7 @@ Pod::Spec.new do |s|
     s.public_header_files = 'SIBase/Classes/*.h'
     s.dependency 'SIUtils'
     s.dependency 'SIComponents'
+    s.dependency 'SIUIKit'
     s.dependency 'SIRequestCenter'
     
 end
