@@ -7,7 +7,7 @@
 //
 
 #import "SIViewController.h"
-#import "SIGlobalEvent.h"
+#import <SIDefine/SIGlobalEvent.h>
 #import <Masonry/Masonry.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SITheme/SIColor.h>

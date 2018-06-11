@@ -8,8 +8,8 @@
 
 #import "SITableViewController.h"
 #import "SIBaseTableViewDefine.h"
-#import "SIDataBindDefine.h"
-#import "SIGlobalEvent.h"
+#import <SIDefine/SIDataBindDefine.h>
+#import <SIDefine/SIGlobalEvent.h>
 #import <Masonry/Masonry.h>
 #import <SITheme/SIColor.h>
 #import <SIUIKit/SIRefreshHeader.h>

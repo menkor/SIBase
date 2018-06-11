@@ -17,8 +17,9 @@ PODS:
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
   - SAMKeychain (1.5.3)
-  - SIBase (0.1.17):
+  - SIBase (0.1.18):
     - SIComponents
+    - SIDefine
     - SIRequestCenter
     - SITheme
     - SIUIKit
@@ -26,6 +27,7 @@ PODS:
   - SIComponents (0.1.8):
     - Masonry
     - SITheme
+  - SIDefine (0.1.1)
   - SIRequestCenter (0.1.9):
     - AFNetworking
   - SITheme (0.1.1)
@@ -34,7 +36,7 @@ PODS:
     - MJRefresh
     - SITheme
     - YCEasyTool
-  - SIUtils (0.1.5):
+  - SIUtils (0.1.6):
     - SAMKeychain
     - YYKit
   - YCEasyTool (0.2.4):
@@ -73,6 +75,7 @@ DEPENDENCIES:
 SPEC REPOS:
   "git@git.superid.cn:iOS/SISpecs.git":
     - SIComponents
+    - SIDefine
     - SIRequestCenter
     - SITheme
     - SIUIKit
@@ -94,12 +97,13 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  SIBase: 78641e5c6c0d1f3954078bbab52ecf9ef1dfecd7
+  SIBase: 5f24ec0b6efab8e43bd1e7bf58c1f21c87591167
   SIComponents: 343a1c238c47a7396315d3eecbd4b5aaa19ce929
+  SIDefine: 46e245aec9af7a3d8c8a0b9e04f776d03adb19e1
   SIRequestCenter: f86e21e53efb28dc83466f7ad1730841249bc830
   SITheme: 64207973dd43a20a7448125c5df26ba298db9329
   SIUIKit: 140e06dcf6e47eebba64b52e69e17d1a4bca0195
-  SIUtils: b15d99f039349eb3c7aeaf9d5176e55cfbe01511
+  SIUtils: c5cc8fe70f3fea80c6a993ab446e14d9a6ba0022
   YCEasyTool: b2c63ded39fa586b129682abf03519c2849bd8b4
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
