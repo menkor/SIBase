@@ -18,7 +18,6 @@
 #import "SIGlobalEvent.h"
 #import "SINavigationController.h"
 #import "SIPageViewController.h"
-#import "SIRequest.h"
 #import "SITableViewController.h"
 #import "SITableViewModel.h"
 #import "SITableVMViewController.h"

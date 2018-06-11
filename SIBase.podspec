@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SIBase'
-    s.version          = '0.1.13'
+    s.version          = '0.1.14'
     s.summary          = 'A short description of SIBase.'
     
     # This description is used to generate tags and improve search results.
@@ -36,6 +36,5 @@ Pod::Spec.new do |s|
     s.dependency 'SIRequestKit'
     s.dependency 'AFNetworking'
     s.dependency 'SIRequestCenter'
-    s.dependency 'ReactiveObjC'
     
 end

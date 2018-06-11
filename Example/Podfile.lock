@@ -16,11 +16,9 @@ PODS:
     - AFNetworking/NSURLSession
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
-  - ReactiveObjC (3.1.0)
   - SAMKeychain (1.5.3)
-  - SIBase (0.1.12):
+  - SIBase (0.1.13):
     - AFNetworking
-    - ReactiveObjC
     - SIComponents
     - SIRequestCenter
     - SIRequestKit
@@ -82,7 +80,6 @@ SPEC REPOS:
     - AFNetworking
     - Masonry
     - MJRefresh
-    - ReactiveObjC
     - SAMKeychain
     - YCEasyTool
     - YYKit
@@ -95,9 +92,8 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  SIBase: 4b1641811d939dfc8958b6c93564895e4177c3ff
+  SIBase: 0809b07fe132ff9ebca28177e5f5385acf29d133
   SIComponents: ecfb258491dd7b1661948c18f3f3f4705dd85a42
   SIRequestCenter: f86e21e53efb28dc83466f7ad1730841249bc830
   SIRequestKit: b2fd3d0ea2f841cdf3d31f21da918b27ef7e278d
