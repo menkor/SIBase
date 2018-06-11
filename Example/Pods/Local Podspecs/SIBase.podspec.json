@@ -1,7 +1,7 @@
 {
   "name": "SIBase",
-  "version": "0.1.16",
-  "summary": "A short description of SIBase.",
+  "version": "0.1.17",
+  "summary": "SIBase.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "http://superid.cn:81/iOS/SIBase",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "git@git.superid.cn:iOS/SIBase.git",
-    "tag": "0.1.16"
+    "tag": "0.1.17"
   },
   "platforms": {
     "ios": "9.0"
@@ -32,6 +32,9 @@
 
     ],
     "SIUIKit": [
+
+    ],
+    "SITheme": [
 
     ],
     "SIRequestCenter": [

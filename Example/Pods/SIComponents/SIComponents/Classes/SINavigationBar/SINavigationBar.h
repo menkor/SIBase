@@ -30,7 +30,7 @@
 /*!
  *  @brief 是否显示 YES:显示.NO:隐藏
  */
-@property (nonatomic, assign) BOOL hideNavigationBarLine;//default is NO;
+@property (nonatomic, assign) BOOL hideNavigationBarLine; //default is NO;
 
 /*!
  @brief 一般为导航栏都在的VC
@@ -49,7 +49,6 @@
  *  @param theme new theme you need
  */
 - (void)setTheme:(SINavigationTheme)theme;
-
 
 - (void)setThemeColor:(UIColor *)themeColor;
 

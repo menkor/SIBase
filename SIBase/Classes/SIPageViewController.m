@@ -8,8 +8,8 @@
 
 #import "SIPageViewController.h"
 #import <Masonry/Masonry.h>
-#import <SIUIKit/SIColor.h>
-#import <SIUIKit/SIFont.h>
+#import <SITheme/SIColor.h>
+#import <SITheme/SIFont.h>
 #import <YCEasyTool/NSArray+YCTools.h>
 #import <YCEasyTool/YCSegmentedControl.h>
 

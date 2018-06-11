@@ -8,8 +8,8 @@
 
 #import "SIEmptyView.h"
 #import <Masonry/Masonry.h>
-#import <SIUIKit/SIFont.h>
-#import <SIUIKit/SIColor.h>
+#import <SITheme/SIColor.h>
+#import <SITheme/SIFont.h>
 
 @interface SIEmptyView ()
 

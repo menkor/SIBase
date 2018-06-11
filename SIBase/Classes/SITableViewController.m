@@ -11,7 +11,7 @@
 #import "SIDataBindDefine.h"
 #import "SIGlobalEvent.h"
 #import <Masonry/Masonry.h>
-#import <SIUIKit/SIColor.h>
+#import <SITheme/SIColor.h>
 #import <SIUIKit/SIRefreshHeader.h>
 #import <YCEasyTool/YCPollingEntity.h>
 

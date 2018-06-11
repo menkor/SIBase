@@ -8,7 +8,7 @@
 
 #import "SINavigationController.h"
 #import "SIViewController.h"
-#import <SIUIKit/SIColor.h>
+#import <SITheme/SIColor.h>
 
 @interface SINavigationController ()
 

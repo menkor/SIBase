@@ -10,7 +10,7 @@
 #import "SIGlobalEvent.h"
 #import <Masonry/Masonry.h>
 #import <SIRequestCenter/SIRequestCenter.h>
-#import <SIUIKit/SIColor.h>
+#import <SITheme/SIColor.h>
 
 @interface SIViewController ()
 
