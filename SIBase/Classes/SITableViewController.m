@@ -7,13 +7,13 @@
 //
 
 #import "SITableViewController.h"
-#import "SIGlobalEvent.h"
-#import "SIDataBindDefine.h"
 #import "SIBaseTableViewDefine.h"
-#import <SIUIKit/SIRefreshHeader.h>
-#import <SIUIKit/SIColor.h>
-#import <YCEasyTool/YCPollingEntity.h>
+#import "SIDataBindDefine.h"
+#import "SIGlobalEvent.h"
 #import <Masonry/Masonry.h>
+#import <SIUIKit/SIColor.h>
+#import <SIUIKit/SIRefreshHeader.h>
+#import <YCEasyTool/YCPollingEntity.h>
 
 @interface SITableViewController () <UISearchControllerDelegate, UISearchResultsUpdating>
 

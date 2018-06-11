@@ -6,8 +6,8 @@
 //  Copyright © 2017年 SuperId. All rights reserved.
 //
 
-#import "SIFormItemDefine.h"
 #import "SIBaseTableViewDefine.h"
+#import "SIFormItemDefine.h"
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN

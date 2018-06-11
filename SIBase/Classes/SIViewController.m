@@ -8,9 +8,9 @@
 
 #import "SIViewController.h"
 #import "SIGlobalEvent.h"
+#import <Masonry/Masonry.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SIUIKit/SIColor.h>
-#import <Masonry/Masonry.h>
 
 @interface SIViewController ()
 

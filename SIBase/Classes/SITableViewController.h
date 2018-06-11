@@ -6,8 +6,8 @@
 //  Copyright © 2017年 SuperId. All rights reserved.
 //
 
-#import <SIComponents/SIEmptyView.h>
 #import "SIViewController.h"
+#import <SIComponents/SIEmptyView.h>
 #import <UIKit/UIKit.h>
 
 @interface SITableViewController : SIViewController <UITableViewDelegate, UITableViewDataSource>
@@ -44,7 +44,7 @@
 
 @property (nonatomic, readonly) NSArray<NSString *> *cellIdentifierArray;
 
-@property (nonatomic, copy) NSString * (^reuseIdentifierBlock)(NSIndexPath *indexPath) ;
+@property (nonatomic, copy) NSString * (^reuseIdentifierBlock)(NSIndexPath *indexPath);
 
 #pragma mark - Action
 

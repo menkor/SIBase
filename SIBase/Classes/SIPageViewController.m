@@ -7,11 +7,11 @@
 //
 
 #import "SIPageViewController.h"
-#import <YCEasyTool/YCSegmentedControl.h>
-#import <YCEasyTool/NSArray+YCTools.h>
 #import <Masonry/Masonry.h>
 #import <SIUIKit/SIColor.h>
 #import <SIUIKit/SIFont.h>
+#import <YCEasyTool/NSArray+YCTools.h>
+#import <YCEasyTool/YCSegmentedControl.h>
 
 @interface SIPageViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 

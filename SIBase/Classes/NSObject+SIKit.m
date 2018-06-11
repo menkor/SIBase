@@ -7,9 +7,9 @@
 //
 
 #import "NSObject+SIKit.h"
+#import <SIRequestCenter/SIRequestCenter.h>
 #import <SIUtils/SICache.h>
 #import <YYKit/NSObject+YYModel.h>
-#import <SIRequestCenter/SIRequestCenter.h>
 
 @implementation NSObject (SICopy)
 
