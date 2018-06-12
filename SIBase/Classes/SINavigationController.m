@@ -9,6 +9,7 @@
 #import "SINavigationController.h"
 #import "SIViewController.h"
 #import <SITheme/SIColor.h>
+#import <SIDefine/SIDefine.h>
 
 @interface SINavigationController ()
 
@@ -25,7 +26,7 @@
     [self.navigationBar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"ic_back_chevron"]];
     if (@available(iOS 11.0, *)) {
         //do nothing
-        NSLog(@"remove sonar warning");
+        SIDLog(@"remove sonar warning");
     } else {
         [UIBarButtonItem.appearance setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -64) forBarMetrics:UIBarMetricsDefault];
     }

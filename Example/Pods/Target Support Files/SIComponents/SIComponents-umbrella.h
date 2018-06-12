@@ -16,6 +16,7 @@
 #import "SIMessageBoxDefine.h"
 #import "SINavigationBar.h"
 #import "SINavigationBarDef.h"
+#import "SITableViewIndex.h"
 
 FOUNDATION_EXPORT double SIComponentsVersionNumber;
 FOUNDATION_EXPORT const unsigned char SIComponentsVersionString[];
