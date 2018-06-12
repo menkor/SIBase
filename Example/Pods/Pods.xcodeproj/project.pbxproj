@@ -4008,36 +4008,6 @@
 			};
 			name = Release;
 		};
-		6A13D1CDBF6CDB59172FECC98F5AAF46 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89EE8A10B37C01098578FDAAFC347871 /* SIBase.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SIBase/SIBase-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SIBase/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SIBase/SIBase.modulemap";
-				PRODUCT_MODULE_NAME = SIBase;
-				PRODUCT_NAME = SIBase;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		6B20280CE6A95E2D8D451B55CDA5C940 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ED30E332551F29D2115019A0E84E9651 /* MJRefresh.xcconfig */;
@@ -4553,6 +4523,36 @@
 			};
 			name = Release;
 		};
+		C0A5885C32ED0FEE1273C417DA2D3448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89EE8A10B37C01098578FDAAFC347871 /* SIBase.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SIBase/SIBase-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SIBase/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SIBase/SIBase.modulemap";
+				PRODUCT_MODULE_NAME = SIBase;
+				PRODUCT_NAME = SIBase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		D0283D74AA9E4B0F055622C3C9C03217 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ED30E332551F29D2115019A0E84E9651 /* MJRefresh.xcconfig */;
@@ -4723,37 +4723,6 @@
 			};
 			name = Debug;
 		};
-		E935FD3E0459845B881A52F4B6FFF3F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89EE8A10B37C01098578FDAAFC347871 /* SIBase.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SIBase/SIBase-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SIBase/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SIBase/SIBase.modulemap";
-				PRODUCT_MODULE_NAME = SIBase;
-				PRODUCT_NAME = SIBase;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		EDF640BF91869965445CDD417C591369 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B9C056813365C0F6E8D0FDAEF7C39582 /* YCEasyTool.xcconfig */;
@@ -4843,6 +4812,37 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		FBFEB6A19FAEDBC28533E799EE248869 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89EE8A10B37C01098578FDAAFC347871 /* SIBase.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SIBase/SIBase-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SIBase/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SIBase/SIBase.modulemap";
+				PRODUCT_MODULE_NAME = SIBase;
+				PRODUCT_NAME = SIBase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		FE3EC76958EB417BB5A9577967FD1019 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -4944,8 +4944,8 @@
 		314611372FBDE27ECA0166B0E8BEF482 /* Build configuration list for PBXNativeTarget "SIBase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6A13D1CDBF6CDB59172FECC98F5AAF46 /* Debug */,
-				E935FD3E0459845B881A52F4B6FFF3F8 /* Release */,
+				C0A5885C32ED0FEE1273C417DA2D3448 /* Debug */,
+				FBFEB6A19FAEDBC28533E799EE248869 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

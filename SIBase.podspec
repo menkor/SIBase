@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SIBase'
-    s.version          = '0.1.22'
+    s.version          = '0.1.23'
     s.summary          = 'SIBase.'
     
     # This description is used to generate tags and improve search results.
@@ -26,8 +26,7 @@ Pod::Spec.new do |s|
     s.author           = { 'ungacy' => 'yetao@superid.cn' }
     s.source = { :git => 'git@git.superid.cn:iOS/SIBase.git', :tag => s.version.to_s }
     
-    s.ios.deployment_target = '9.0'
-    s.requires_arc = true
+    s.ios.deployment_target = '8.0'
     s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
     s.source_files = 'SIBase/Classes/*.{h,m,swift}'
     s.public_header_files = 'SIBase/Classes/*.h'
