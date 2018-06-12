@@ -20,7 +20,7 @@
 
 #pragma mark - debug log
 
-@import CocoaLumberjack;
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 #ifdef DEBUG
 static const unsigned long ddLogLevel = DDLogLevelAll;

@@ -337,3 +337,15 @@ static inline NSString *srk_prettyJson(NSDictionary *object) {
 }
 
 @end
+
+@implementation NSObject (SIRequest)
+
+- (nullable NSURLSessionDataTask *)requestWithCompletion:(SIRequestCompletionBlock)completion {
+    return [self requestWithCustomBlock:nil completion:completion];
+}
+
+- (nullable NSURLSessionDataTask *)requestWithCustomBlock:(void (^)(AFHTTPSessionManager *, id))customBlock completion:(SIRequestCompletionBlock)completion {
+    return [[SIRequestCenter sharedInstance] request:(id<SIRequestKitProtocol>)self customBlock:customBlock completion:completion];
+}
+
+@end

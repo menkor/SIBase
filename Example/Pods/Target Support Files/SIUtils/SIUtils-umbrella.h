@@ -10,9 +10,11 @@
 #endif
 #endif
 
+#import "SIFileDirectDownloadTool.h"
 #import "SIInputValidator.h"
 #import "SICache.h"
 #import "SIConfigCenter.h"
+#import "SITimerQueue.h"
 
 FOUNDATION_EXPORT double SIUtilsVersionNumber;
 FOUNDATION_EXPORT const unsigned char SIUtilsVersionString[];

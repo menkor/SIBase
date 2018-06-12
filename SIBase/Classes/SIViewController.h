@@ -11,6 +11,7 @@
 #import <SIComponents/SINavigationBar.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SIUIKit/SIAlertView.h>
+#import <SIDefine/SIGlobalMacro.h>
 #import <UIKit/UIKit.h>
 
 @class SIAffairInfo;

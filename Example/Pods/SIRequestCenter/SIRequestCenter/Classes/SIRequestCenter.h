@@ -56,3 +56,13 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+@interface NSObject (SIRequest)
+
+- (nullable NSURLSessionDataTask *)requestWithCompletion:(void (^__nullable)(BOOL isSuccess, __nullable id result))completion;
+
+- (nullable NSURLSessionDataTask *)requestWithCustomBlock:(void (^__nullable)(AFHTTPSessionManager *manager, id api))customBlock
+                                               completion:(void (^__nullable)(BOOL isSuccess, __nullable id result))completion;
+
+@end
+
