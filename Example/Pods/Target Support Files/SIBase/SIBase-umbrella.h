@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "NSObject+SIKit.h"
 #import "SIBaseTableViewDefine.h"
 #import "SIFormItem.h"
 #import "SIFormItemDefine.h"
