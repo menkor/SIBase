@@ -9,6 +9,7 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <SIComponents/SIMessageBox.h>
 #import <SIComponents/SINavigationBar.h>
+#import <SIRequestCenter/SIRequestCenter.h>
 #import <SIUIKit/SIAlertView.h>
 #import <UIKit/UIKit.h>
 

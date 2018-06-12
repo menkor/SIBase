@@ -7,6 +7,7 @@
 //
 
 #import "SIViewController.h"
+#import "SIBaseTableViewDefine.h"
 #import <SIComponents/SIEmptyView.h>
 #import <UIKit/UIKit.h>
 
