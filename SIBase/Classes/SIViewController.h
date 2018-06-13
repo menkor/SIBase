@@ -7,11 +7,11 @@
 //
 
 #import <AFNetworking/AFNetworkReachabilityManager.h>
-#import <SIUIKit/SIMessageBox.h>
-#import <SIUIKit/SINavigationBar.h>
+#import <SIDefine/SIGlobalMacro.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SIUIKit/SIAlertView.h>
-#import <SIDefine/SIGlobalMacro.h>
+#import <SIUIKit/SIMessageBox.h>
+#import <SIUIKit/SINavigationBar.h>
 #import <UIKit/UIKit.h>
 
 @class SIAffairInfo;

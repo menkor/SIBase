@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "SIBase.h"
 #import "SIBaseTableViewDefine.h"
 #import "SIFormItem.h"
 #import "SIFormItemDefine.h"

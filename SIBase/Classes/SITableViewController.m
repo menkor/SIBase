@@ -7,10 +7,9 @@
 //
 
 #import "SITableViewController.h"
-#import "SIBaseTableViewDefine.h"
+#import <Masonry/Masonry.h>
 #import <SIDefine/SIDataBindDefine.h>
 #import <SIDefine/SIGlobalEvent.h>
-#import <Masonry/Masonry.h>
 #import <SITheme/SIColor.h>
 #import <SIUIKit/SIRefreshHeader.h>
 #import <YCEasyTool/YCPollingEntity.h>

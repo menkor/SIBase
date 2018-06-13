@@ -23,7 +23,7 @@ PODS:
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
   - SAMKeychain (1.5.3)
-  - SIBase (0.1.25):
+  - SIBase (0.1.26):
     - SIDefine
     - SIRequestCenter
     - SITheme
@@ -103,7 +103,7 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  SIBase: 728a9ee0d3df494d9ae21bee0af12dc5b3429da0
+  SIBase: 8da89682b3106aeb1a18709c5dcf582e041de7b1
   SIDefine: 823f80f5a2f4c9d4f3b20a30f202251345d89e02
   SIRequestCenter: 08218318de98f6d66efdd111243abd61ddc1e994
   SITheme: 64207973dd43a20a7448125c5df26ba298db9329
