@@ -7,8 +7,8 @@
 //
 
 #import <AFNetworking/AFNetworkReachabilityManager.h>
-#import <SIComponents/SIMessageBox.h>
-#import <SIComponents/SINavigationBar.h>
+#import <SIUIKit/SIMessageBox.h>
+#import <SIUIKit/SINavigationBar.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SIUIKit/SIAlertView.h>
 #import <SIDefine/SIGlobalMacro.h>

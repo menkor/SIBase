@@ -1,6 +1,0 @@
-framework module SIComponents {
-  umbrella header "SIComponents-umbrella.h"
-
-  export *
-  module * { export * }
-}

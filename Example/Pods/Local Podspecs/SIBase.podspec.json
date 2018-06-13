@@ -1,6 +1,6 @@
 {
   "name": "SIBase",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "summary": "SIBase.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "http://superid.cn:81/iOS/SIBase",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "git@git.superid.cn:iOS/SIBase.git",
-    "tag": "0.1.24"
+    "tag": "0.1.25"
   },
   "platforms": {
     "ios": "8.0"
@@ -25,9 +25,6 @@
   "public_header_files": "SIBase/Classes/*.h",
   "dependencies": {
     "SIUtils": [
-
-    ],
-    "SIComponents": [
 
     ],
     "SIUIKit": [
