@@ -223,6 +223,7 @@
     [alert addAction:[SIAlertAction actionWithTitle:cancelButtonTitle
                                               style:SIAlertActionStyleCancel
                                             handler:[cancelButtonTitle isEqualToString:@"取消"] ? nil : handler]];
+    [self.view endEditing:YES];
     [alert show];
 }
 
@@ -240,23 +241,28 @@
     [alert addAction:[SIAlertAction actionWithTitle:cancelButtonTitle
                                               style:SIAlertActionStyleCancel
                                             handler:[cancelButtonTitle isEqualToString:@"取消"] ? nil : handler]];
+    [self.view endEditing:YES];
     [alert show];
 }
 
 - (void)showMessage:(NSString *)message title:(NSString *)title {
+    [self.view endEditing:YES];
     SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusSuccess title:title message:message];
     [box show];
 }
 
 - (void)showMessage:(NSString *)message {
+    [self.view endEditing:YES];
     [SIMessageBox showMessage:message];
 }
 
 - (void)showError:(NSString *)error {
+    [self.view endEditing:YES];
     [SIMessageBox showError:error];
 }
 
 - (void)showWaiting:(NSString *)hint {
+    [self.view endEditing:YES];
     [SIMessageBox showWaiting:hint];
 }
 
