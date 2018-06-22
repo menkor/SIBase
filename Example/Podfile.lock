@@ -22,28 +22,23 @@ PODS:
     - CocoaLumberjack/Default
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
-  - SAMKeychain (1.5.3)
-  - SIBase (0.1.26):
+  - SIBase (0.1.30):
     - SIDefine
     - SIRequestCenter
     - SITheme
     - SIUIKit
-    - SIUtils
-  - SIDefine (0.1.6):
+  - SIDefine (0.1.7):
     - CocoaLumberjack
-  - SIRequestCenter (0.1.11):
-    - AFNetworking
-  - SITheme (0.1.1)
-  - SIUIKit (0.1.23):
+  - SIRequestCenter (0.1.13):
+    - YCRequest
+  - SITheme (0.1.3):
+    - Masonry
+  - SIUIKit (0.1.25):
     - Masonry
     - MJRefresh
+    - SIDefine
     - SITheme
     - YCEasyTool
-  - SIUtils (0.1.9):
-    - AFNetworking
-    - SAMKeychain
-    - YCEasyTool
-    - YYKit
   - YCEasyTool (0.2.4):
     - YCEasyTool/Forever (= 0.2.4)
     - YCEasyTool/Polling (= 0.2.4)
@@ -70,9 +65,8 @@ PODS:
   - YCEasyTool/UI/Segment (0.2.4)
   - YCEasyTool/UI/TabBarController (0.2.4)
   - YCEasyTool/UI/TreeMenu (0.2.4)
-  - YYKit (1.0.9):
-    - YYKit/no-arc (= 1.0.9)
-  - YYKit/no-arc (1.0.9)
+  - YCRequest (0.1.2):
+    - AFNetworking
 
 DEPENDENCIES:
   - SIBase (from `../`)
@@ -83,15 +77,13 @@ SPEC REPOS:
     - SIRequestCenter
     - SITheme
     - SIUIKit
-    - SIUtils
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - CocoaLumberjack
     - Masonry
     - MJRefresh
-    - SAMKeychain
     - YCEasyTool
-    - YYKit
+    - YCRequest
 
 EXTERNAL SOURCES:
   SIBase:
@@ -102,15 +94,13 @@ SPEC CHECKSUMS:
   CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  SIBase: 8da89682b3106aeb1a18709c5dcf582e041de7b1
-  SIDefine: 823f80f5a2f4c9d4f3b20a30f202251345d89e02
-  SIRequestCenter: 08218318de98f6d66efdd111243abd61ddc1e994
-  SITheme: 64207973dd43a20a7448125c5df26ba298db9329
-  SIUIKit: dbd0c747e4f641c09d0de110013aaf1cb3c9b55e
-  SIUtils: 16f88ff5fc36f01fca79cb14c61b3989dc7ef60b
+  SIBase: ddfb50c5c2b4f8d3941991c6ec86b9a8f4758f01
+  SIDefine: 09edc367025519df772777aa9b64710973b9328d
+  SIRequestCenter: 966170a70269a31aedce173424bccf3f03458c20
+  SITheme: 990c82d696d5f72ccbd326185e1cf06a2e7c566d
+  SIUIKit: 711e155e57b82e66e059299ab2f9acbc9073b464
   YCEasyTool: b2c63ded39fa586b129682abf03519c2849bd8b4
-  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  YCRequest: cb6700224308969858da66764f3a5d8aaf241d5e
 
 PODFILE CHECKSUM: a754725bd5d3acb57dbfc1f91da12cb9e6fb47f0
 

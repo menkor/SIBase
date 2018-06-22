@@ -341,15 +341,13 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/SAMKeychain/SAMKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SIBase/SIBase.framework",
 				"${BUILT_PRODUCTS_DIR}/SIDefine/SIDefine.framework",
 				"${BUILT_PRODUCTS_DIR}/SIRequestCenter/SIRequestCenter.framework",
 				"${BUILT_PRODUCTS_DIR}/SITheme/SITheme.framework",
 				"${BUILT_PRODUCTS_DIR}/SIUIKit/SIUIKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SIUtils/SIUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/YCEasyTool/YCEasyTool.framework",
-				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
+				"${BUILT_PRODUCTS_DIR}/YCRequest/YCRequest.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -357,15 +355,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAMKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIBase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIDefine.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIRequestCenter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SITheme.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIUIKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIUtils.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YCEasyTool.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YCRequest.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
