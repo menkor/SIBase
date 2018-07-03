@@ -44,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL hideAvatar;
 
+// 用于时间选择的Cell，清空已选时间，及类似情况
+@property (nonatomic, assign) BOOL dateCleanBtn;
+
 #pragma mark - Status
 
 @property (nonatomic, assign) BOOL selected;
