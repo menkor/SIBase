@@ -12,9 +12,9 @@
 #import <SIUIKit/SIAlertView.h>
 #import <SIUIKit/SIMessageBox.h>
 #import <SIUIKit/SINavigationBar.h>
+#import <SIRequestKit/SIAffairInfo.h>
 #import <UIKit/UIKit.h>
 
-@class SIAffairInfo;
 @protocol SIViewController <NSObject>
 
 - (void)goBack;

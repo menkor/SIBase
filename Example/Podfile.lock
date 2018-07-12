@@ -22,51 +22,57 @@ PODS:
     - CocoaLumberjack/Default
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
-  - SIBase (0.1.30):
+  - SIBase (0.1.32):
     - SIDefine
     - SIRequestCenter
+    - SIRequestKit/Affair
     - SITheme
     - SIUIKit
-  - SIDefine (0.1.7):
+  - SIDefine (0.1.8):
     - CocoaLumberjack
-  - SIRequestCenter (0.1.13):
+  - SIRequestCenter (0.1.16):
     - YCRequest
-  - SITheme (0.1.3):
+  - SIRequestKit/Affair (0.4.51)
+  - SITheme (0.1.4):
     - Masonry
-  - SIUIKit (0.1.25):
+  - SIUIKit (0.1.29):
     - Masonry
     - MJRefresh
     - SIDefine
     - SITheme
     - YCEasyTool
-  - YCEasyTool (0.2.4):
-    - YCEasyTool/Forever (= 0.2.4)
-    - YCEasyTool/Polling (= 0.2.4)
-    - YCEasyTool/Property (= 0.2.4)
-    - YCEasyTool/Tools (= 0.2.4)
-    - YCEasyTool/UI (= 0.2.4)
-  - YCEasyTool/Forever (0.2.4):
+    - YYKit
+  - YCEasyTool (0.2.5):
+    - YCEasyTool/Forever (= 0.2.5)
+    - YCEasyTool/Polling (= 0.2.5)
+    - YCEasyTool/Property (= 0.2.5)
+    - YCEasyTool/Tools (= 0.2.5)
+    - YCEasyTool/UI (= 0.2.5)
+  - YCEasyTool/Forever (0.2.5):
     - YCEasyTool/Property
-  - YCEasyTool/Polling (0.2.4)
-  - YCEasyTool/Property (0.2.4)
-  - YCEasyTool/Tools (0.2.4)
-  - YCEasyTool/UI (0.2.4):
-    - YCEasyTool/UI/CollectionView (= 0.2.4)
-    - YCEasyTool/UI/Grid (= 0.2.4)
-    - YCEasyTool/UI/PopMenu (= 0.2.4)
-    - YCEasyTool/UI/Segment (= 0.2.4)
-    - YCEasyTool/UI/TabBarController (= 0.2.4)
-    - YCEasyTool/UI/TreeMenu (= 0.2.4)
-  - YCEasyTool/UI/CollectionView (0.2.4)
-  - YCEasyTool/UI/Grid (0.2.4):
+  - YCEasyTool/Polling (0.2.5)
+  - YCEasyTool/Property (0.2.5)
+  - YCEasyTool/Tools (0.2.5)
+  - YCEasyTool/UI (0.2.5):
+    - YCEasyTool/UI/CollectionView (= 0.2.5)
+    - YCEasyTool/UI/Grid (= 0.2.5)
+    - YCEasyTool/UI/PopMenu (= 0.2.5)
+    - YCEasyTool/UI/Segment (= 0.2.5)
+    - YCEasyTool/UI/TabBarController (= 0.2.5)
+    - YCEasyTool/UI/TreeMenu (= 0.2.5)
+  - YCEasyTool/UI/CollectionView (0.2.5)
+  - YCEasyTool/UI/Grid (0.2.5):
     - YCEasyTool/Tools
     - YCEasyTool/UI/CollectionView
-  - YCEasyTool/UI/PopMenu (0.2.4)
-  - YCEasyTool/UI/Segment (0.2.4)
-  - YCEasyTool/UI/TabBarController (0.2.4)
-  - YCEasyTool/UI/TreeMenu (0.2.4)
-  - YCRequest (0.1.2):
+  - YCEasyTool/UI/PopMenu (0.2.5)
+  - YCEasyTool/UI/Segment (0.2.5)
+  - YCEasyTool/UI/TabBarController (0.2.5)
+  - YCEasyTool/UI/TreeMenu (0.2.5)
+  - YCRequest (0.1.4):
     - AFNetworking
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
   - SIBase (from `../`)
@@ -75,6 +81,7 @@ SPEC REPOS:
   "git@git.superid.cn:iOS/SISpecs.git":
     - SIDefine
     - SIRequestCenter
+    - SIRequestKit
     - SITheme
     - SIUIKit
   https://github.com/CocoaPods/Specs.git:
@@ -84,6 +91,7 @@ SPEC REPOS:
     - MJRefresh
     - YCEasyTool
     - YCRequest
+    - YYKit
 
 EXTERNAL SOURCES:
   SIBase:
@@ -94,13 +102,15 @@ SPEC CHECKSUMS:
   CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  SIBase: ddfb50c5c2b4f8d3941991c6ec86b9a8f4758f01
-  SIDefine: 09edc367025519df772777aa9b64710973b9328d
-  SIRequestCenter: 966170a70269a31aedce173424bccf3f03458c20
-  SITheme: 990c82d696d5f72ccbd326185e1cf06a2e7c566d
-  SIUIKit: 711e155e57b82e66e059299ab2f9acbc9073b464
-  YCEasyTool: b2c63ded39fa586b129682abf03519c2849bd8b4
-  YCRequest: cb6700224308969858da66764f3a5d8aaf241d5e
+  SIBase: 911b323f116f532a2084fc7c4830a207fd86d69b
+  SIDefine: 4cbfba09a92436a69e3ddb74cd082aff1e940f42
+  SIRequestCenter: d55ccb639e61242ffbc05ded3cd6dc06b5055e7b
+  SIRequestKit: 5b00e19ff8a80f715ecd14420d16c6b0b51833a7
+  SITheme: 9bd3253aa26988ed85c2f18b543cd01f2433481b
+  SIUIKit: ae121828ec78fc5e9380ef4bb2fe29d482c64d10
+  YCEasyTool: c71d2f91e2b3545ccccb6eb1866430037c942ef3
+  YCRequest: 067111a217a96fa8e85d838303e401192010851b
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
 PODFILE CHECKSUM: a754725bd5d3acb57dbfc1f91da12cb9e6fb47f0
 
