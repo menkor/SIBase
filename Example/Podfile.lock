@@ -22,17 +22,25 @@ PODS:
     - CocoaLumberjack/Default
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
-  - SIBase (0.1.32):
+  - SAMKeychain (1.5.3)
+  - SIBase (0.1.33):
+    - SICollector
     - SIDefine
     - SIRequestCenter
     - SIRequestKit/Affair
     - SITheme
     - SIUIKit
-  - SIDefine (0.1.8):
+  - SICollector (0.1.7):
+    - AFNetworking
+    - SIRequestKit/Collector
+    - SIUtils/UUID
+    - YCEasyTool
+  - SIDefine (0.1.9):
     - CocoaLumberjack
   - SIRequestCenter (0.1.16):
     - YCRequest
-  - SIRequestKit/Affair (0.4.51)
+  - SIRequestKit/Affair (0.4.80)
+  - SIRequestKit/Collector (0.4.80)
   - SITheme (0.1.4):
     - Masonry
   - SIUIKit (0.1.29):
@@ -42,32 +50,34 @@ PODS:
     - SITheme
     - YCEasyTool
     - YYKit
-  - YCEasyTool (0.2.5):
-    - YCEasyTool/Forever (= 0.2.5)
-    - YCEasyTool/Polling (= 0.2.5)
-    - YCEasyTool/Property (= 0.2.5)
-    - YCEasyTool/Tools (= 0.2.5)
-    - YCEasyTool/UI (= 0.2.5)
-  - YCEasyTool/Forever (0.2.5):
+  - SIUtils/UUID (0.1.17):
+    - SAMKeychain
+  - YCEasyTool (0.2.8):
+    - YCEasyTool/Forever (= 0.2.8)
+    - YCEasyTool/Polling (= 0.2.8)
+    - YCEasyTool/Property (= 0.2.8)
+    - YCEasyTool/Tools (= 0.2.8)
+    - YCEasyTool/UI (= 0.2.8)
+  - YCEasyTool/Forever (0.2.8):
     - YCEasyTool/Property
-  - YCEasyTool/Polling (0.2.5)
-  - YCEasyTool/Property (0.2.5)
-  - YCEasyTool/Tools (0.2.5)
-  - YCEasyTool/UI (0.2.5):
-    - YCEasyTool/UI/CollectionView (= 0.2.5)
-    - YCEasyTool/UI/Grid (= 0.2.5)
-    - YCEasyTool/UI/PopMenu (= 0.2.5)
-    - YCEasyTool/UI/Segment (= 0.2.5)
-    - YCEasyTool/UI/TabBarController (= 0.2.5)
-    - YCEasyTool/UI/TreeMenu (= 0.2.5)
-  - YCEasyTool/UI/CollectionView (0.2.5)
-  - YCEasyTool/UI/Grid (0.2.5):
+  - YCEasyTool/Polling (0.2.8)
+  - YCEasyTool/Property (0.2.8)
+  - YCEasyTool/Tools (0.2.8)
+  - YCEasyTool/UI (0.2.8):
+    - YCEasyTool/UI/CollectionView (= 0.2.8)
+    - YCEasyTool/UI/Grid (= 0.2.8)
+    - YCEasyTool/UI/PopMenu (= 0.2.8)
+    - YCEasyTool/UI/Segment (= 0.2.8)
+    - YCEasyTool/UI/TabBarController (= 0.2.8)
+    - YCEasyTool/UI/TreeMenu (= 0.2.8)
+  - YCEasyTool/UI/CollectionView (0.2.8)
+  - YCEasyTool/UI/Grid (0.2.8):
     - YCEasyTool/Tools
     - YCEasyTool/UI/CollectionView
-  - YCEasyTool/UI/PopMenu (0.2.5)
-  - YCEasyTool/UI/Segment (0.2.5)
-  - YCEasyTool/UI/TabBarController (0.2.5)
-  - YCEasyTool/UI/TreeMenu (0.2.5)
+  - YCEasyTool/UI/PopMenu (0.2.8)
+  - YCEasyTool/UI/Segment (0.2.8)
+  - YCEasyTool/UI/TabBarController (0.2.8)
+  - YCEasyTool/UI/TreeMenu (0.2.8)
   - YCRequest (0.1.4):
     - AFNetworking
   - YYKit (1.0.9):
@@ -79,16 +89,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   "git@git.superid.cn:iOS/SISpecs.git":
+    - SICollector
     - SIDefine
     - SIRequestCenter
     - SIRequestKit
     - SITheme
     - SIUIKit
+    - SIUtils
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - CocoaLumberjack
     - Masonry
     - MJRefresh
+    - SAMKeychain
     - YCEasyTool
     - YCRequest
     - YYKit
@@ -102,13 +115,16 @@ SPEC CHECKSUMS:
   CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  SIBase: 911b323f116f532a2084fc7c4830a207fd86d69b
-  SIDefine: 4cbfba09a92436a69e3ddb74cd082aff1e940f42
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
+  SIBase: 6b8ffdac8c565c7376190c1cac9761b00a403033
+  SICollector: fb694d98e616c11471eabfc582727165fd0f81d5
+  SIDefine: 98cabfd2dfbc73aae172275820a25b34965e6eac
   SIRequestCenter: d55ccb639e61242ffbc05ded3cd6dc06b5055e7b
-  SIRequestKit: 5b00e19ff8a80f715ecd14420d16c6b0b51833a7
+  SIRequestKit: 77f30ef61771e2bb1735f783d9fcb4316849a968
   SITheme: 9bd3253aa26988ed85c2f18b543cd01f2433481b
   SIUIKit: ae121828ec78fc5e9380ef4bb2fe29d482c64d10
-  YCEasyTool: c71d2f91e2b3545ccccb6eb1866430037c942ef3
+  SIUtils: f49ea70cc7efb5b551c8497993dd4d35293f2689
+  YCEasyTool: 1706776cee2cd4dab65a1ea0b72ddd1598aee07e
   YCRequest: 067111a217a96fa8e85d838303e401192010851b
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 

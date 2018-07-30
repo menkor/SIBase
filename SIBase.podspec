@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SIBase'
-    s.version          = '0.1.33'
+    s.version          = '0.1.34'
     s.summary          = 'SIBase.'
     
     # This description is used to generate tags and improve search results.
@@ -30,10 +30,12 @@ Pod::Spec.new do |s|
     s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
     s.source_files = 'SIBase/Classes/*.{h,m,swift}'
     s.public_header_files = 'SIBase/Classes/*.h'
+    
     s.dependency 'SIUIKit'
     s.dependency 'SITheme'
     s.dependency 'SIRequestCenter'
     s.dependency 'SIRequestKit/Affair'
     s.dependency 'SIDefine'
+    s.dependency 'SICollector'
     
 end

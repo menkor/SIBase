@@ -11,6 +11,7 @@
 #import <SIDefine/SIGlobalEvent.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SITheme/SIColor.h>
+#import <SICollector/SICollector.h>
 
 @interface SIViewController ()
 
@@ -65,6 +66,12 @@
     if (_customNaviBar) {
         self.navigationController.navigationBarHidden = YES;
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self saveIntoCollector];
+    
 }
 
 - (void)showNavigationBarLine:(BOOL)show {

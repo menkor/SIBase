@@ -14,7 +14,7 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* SIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* SIAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* SIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* SIViewController.m */; };
+		6003F5A7195388D20070C39A /* SIDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* SIDemoViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -50,8 +50,8 @@
 		6003F59B195388D20070C39A /* SIBase-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SIBase-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* SIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* SIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* SIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* SIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIViewController.m; sourceTree = "<group>"; };
+		6003F5A5195388D20070C39A /* SIDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIDemoViewController.h; sourceTree = "<group>"; };
+		6003F5A6195388D20070C39A /* SIDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SIDemoViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* SIBase_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SIBase_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -135,8 +135,8 @@
 				6003F59C195388D20070C39A /* SIAppDelegate.h */,
 				6003F59D195388D20070C39A /* SIAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* SIViewController.h */,
-				6003F5A6195388D20070C39A /* SIViewController.m */,
+				6003F5A5195388D20070C39A /* SIDemoViewController.h */,
+				6003F5A6195388D20070C39A /* SIDemoViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -341,12 +341,15 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SAMKeychain/SAMKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SIBase/SIBase.framework",
+				"${BUILT_PRODUCTS_DIR}/SICollector/SICollector.framework",
 				"${BUILT_PRODUCTS_DIR}/SIDefine/SIDefine.framework",
 				"${BUILT_PRODUCTS_DIR}/SIRequestCenter/SIRequestCenter.framework",
 				"${BUILT_PRODUCTS_DIR}/SIRequestKit/SIRequestKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SITheme/SITheme.framework",
 				"${BUILT_PRODUCTS_DIR}/SIUIKit/SIUIKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SIUtils/SIUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/YCEasyTool/YCEasyTool.framework",
 				"${BUILT_PRODUCTS_DIR}/YCRequest/YCRequest.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
@@ -357,12 +360,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAMKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIBase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SICollector.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIDefine.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIRequestCenter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIRequestKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SITheme.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIUIKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SIUtils.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YCEasyTool.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YCRequest.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
@@ -380,7 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* SIAppDelegate.m in Sources */,
-				6003F5A7195388D20070C39A /* SIViewController.m in Sources */,
+				6003F5A7195388D20070C39A /* SIDemoViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
