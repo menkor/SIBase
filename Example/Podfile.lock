@@ -23,15 +23,15 @@ PODS:
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
   - SAMKeychain (1.5.3)
-  - SIBase (0.1.33):
+  - SIBase (0.1.34):
     - SICollector
     - SIDefine
     - SIRequestCenter
     - SIRequestKit/Affair
     - SITheme
     - SIUIKit
-  - SICollector (0.1.7):
-    - AFNetworking
+  - SICollector (0.1.12):
+    - SIRequestCenter
     - SIRequestKit/Collector
     - SIUtils/UUID
     - YCEasyTool
@@ -39,8 +39,8 @@ PODS:
     - CocoaLumberjack
   - SIRequestCenter (0.1.16):
     - YCRequest
-  - SIRequestKit/Affair (0.4.80)
-  - SIRequestKit/Collector (0.4.80)
+  - SIRequestKit/Affair (0.4.86)
+  - SIRequestKit/Collector (0.4.86)
   - SITheme (0.1.4):
     - Masonry
   - SIUIKit (0.1.29):
@@ -116,11 +116,11 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  SIBase: 6b8ffdac8c565c7376190c1cac9761b00a403033
-  SICollector: fb694d98e616c11471eabfc582727165fd0f81d5
+  SIBase: 6bece0ecbfab377ba794e26ae95d2fb4d93d1758
+  SICollector: cff89bfceed01e0d46cec5fae9af3ee75d57db7b
   SIDefine: 98cabfd2dfbc73aae172275820a25b34965e6eac
   SIRequestCenter: d55ccb639e61242ffbc05ded3cd6dc06b5055e7b
-  SIRequestKit: 77f30ef61771e2bb1735f783d9fcb4316849a968
+  SIRequestKit: 4d2c7e7aea0ece4feafb30a0c530e0f38111d202
   SITheme: 9bd3253aa26988ed85c2f18b543cd01f2433481b
   SIUIKit: ae121828ec78fc5e9380ef4bb2fe29d482c64d10
   SIUtils: f49ea70cc7efb5b551c8497993dd4d35293f2689
