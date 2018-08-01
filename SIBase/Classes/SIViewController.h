@@ -53,6 +53,10 @@
 
 @property (nonatomic, copy) NSString *networkActivityHint;
 
+#pragma mark - Collector
+
+@property (nonatomic, copy) NSString *pageUri;
+
 @end
 
 @interface SIViewController (SIAlert)

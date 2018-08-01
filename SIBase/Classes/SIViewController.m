@@ -8,6 +8,7 @@
 
 #import "SIViewController.h"
 #import <Masonry/Masonry.h>
+#import <SICollector/SICollector.h>
 #import <SIDefine/SIGlobalEvent.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SITheme/SIColor.h>
@@ -65,6 +66,11 @@
     if (_customNaviBar) {
         self.navigationController.navigationBarHidden = YES;
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self eventTracking];
 }
 
 - (void)showNavigationBarLine:(BOOL)show {
