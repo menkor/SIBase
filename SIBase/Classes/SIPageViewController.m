@@ -56,18 +56,12 @@
             make.edges.mas_equalTo(self.view);
         }];
     }
+    [self switchToPage:0];
     self.hideNavigationBarLine = NO;
     // Do any additional setup after loading the view.
 }
 
 - (void)presetPages {
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (self.currentIndex == -1) {
-        [self switchToPage:0];
-    }
 }
 
 #pragma mark - Transition
