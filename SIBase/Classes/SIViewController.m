@@ -114,7 +114,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)goBack:(NSUInteger)level {
+- (void)forward:(NSUInteger)level {
     NSArray *viewControllers = self.navigationController.viewControllers;
     if (viewControllers.count > level) {
         UIViewController *target = viewControllers[viewControllers.count - level - 1];

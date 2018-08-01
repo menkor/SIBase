@@ -9,17 +9,25 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <SIDefine/SIGlobalMacro.h>
 #import <SIRequestCenter/SIRequestCenter.h>
+#import <SIRequestKit/SIAffairInfo.h>
 #import <SIUIKit/SIAlertView.h>
 #import <SIUIKit/SIMessageBox.h>
 #import <SIUIKit/SINavigationBar.h>
-#import <SIRequestKit/SIAffairInfo.h>
 #import <UIKit/UIKit.h>
 
 @protocol SIViewController <NSObject>
 
+/**
+ just pop `1` level back
+ */
 - (void)goBack;
 
-- (void)goBack:(NSUInteger)level;
+/**
+ forward `level` level back
+
+ @param level 往前跳的级数
+ */
+- (void)forward:(NSUInteger)level;
 
 - (void)loadData;
 
@@ -27,13 +35,7 @@
 
 @interface SIViewController : UIViewController <SIViewController>
 
-- (void)goBack;
-
-- (void)goBack:(NSUInteger)level;
-
 @property (nonatomic, assign) BOOL reloadWhenAppear;
-
-- (void)loadData;
 
 @property (nonatomic, assign) BOOL hideNavigationBarLine;
 
