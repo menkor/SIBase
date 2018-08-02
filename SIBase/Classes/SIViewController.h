@@ -23,11 +23,11 @@
 - (void)goBack;
 
 /**
- forward `level` level back
+ backward `level` level back
 
  @param level 往前跳的级数
  */
-- (void)forward:(NSUInteger)level;
+- (void)backward:(NSUInteger)level;
 
 - (void)loadData;
 
