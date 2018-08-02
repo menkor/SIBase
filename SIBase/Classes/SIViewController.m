@@ -167,6 +167,15 @@
     }
     NSDictionary *userInfo = [sender object];
     SIRequestStatus status = [userInfo[@"status"] integerValue];
+    id api = userInfo[@"api"];
+    @try {
+        NSString *category = [api valueForKeyPath:@"srk_config.category"];
+        if ([category isEqualToString:@"Collector"]) {
+            return;
+        }
+    } @finally {
+    }
+
     if (status == SIRequestStatusBegin) {
         self.startedNetworkActivity = YES;
         [self showWaiting:self.networkActivityHint];
