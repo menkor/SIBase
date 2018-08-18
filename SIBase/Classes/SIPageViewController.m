@@ -13,6 +13,12 @@
 #import <YCEasyTool/NSArray+YCTools.h>
 #import <YCEasyTool/YCSegmentedControl.h>
 
+@interface SIViewController ()
+
+@property (nonatomic, assign) BOOL si_viewAppeared;
+
+@end
+
 @interface SIPageViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 @property (nonatomic, strong) YCSegmentedControl *segment;
@@ -68,6 +74,12 @@
     if (self.currentIndex == -1) {
         [self switchToPage:0];
     }
+}
+
+- (void)setSi_viewAppeared:(BOOL)si_viewAppeared {
+    [super setSi_viewAppeared:si_viewAppeared];
+    SIViewController *obj = [self childAtPage:self.currentPage];
+    [obj setSi_viewAppeared:si_viewAppeared];
 }
 
 #pragma mark - Transition

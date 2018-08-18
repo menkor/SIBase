@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) SINavigationBar *naviBar;
 
-@property (nonatomic, assign) BOOL viewAppeared;
+@property (nonatomic, assign) BOOL si_viewAppeared;
 
 @property (nonatomic, assign) BOOL startedNetworkActivity;
 
@@ -38,6 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.si_viewAppeared = YES;
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.translucent = YES;
     [self defaultUI];
@@ -52,7 +53,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    _viewAppeared = YES;
+    self.si_viewAppeared = YES;
     if (!self.startedNetworkActivity) {
         [self hideWaiting];
     }
@@ -80,10 +81,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.si_viewAppeared = NO;
     if (self.startedNetworkActivity) {
         [self hideWaiting];
     }
-    _viewAppeared = NO;
     [self.view endEditing:YES];
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:YES];
@@ -162,7 +163,7 @@
 }
 
 - (void)_requestStatus:(NSNotification *)sender {
-    if (!_viewAppeared) {
+    if (!_si_viewAppeared) {
         return;
     }
     NSDictionary *userInfo = [sender object];

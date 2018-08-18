@@ -15,7 +15,7 @@
 
 #pragma mark - Style
 
-- (instancetype)initWithStyle:(UITableViewStyle)style;
+- (instancetype)initWithStyle:(UITableViewStyle)style NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, strong, readonly) UITableView *tableView;
 

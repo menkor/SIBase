@@ -48,10 +48,9 @@
 }
 
 - (instancetype)init {
-    self = [super init];
+    self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
-        _style = UITableViewStylePlain;
-        _cellHeight = kSIBaseTableViewDefaultCellHeight;
+        
     }
     return self;
 }

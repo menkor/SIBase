@@ -26,26 +26,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nullable) NSString *content;
 
-@property (nonatomic, copy, nullable) NSString *minValue;
+@property (nonatomic, copy, nullable) NSString *minValue __deprecated;
 
-@property (nonatomic, copy, nullable) NSString *maxValue;
+@property (nonatomic, copy, nullable) NSString *maxValue __deprecated;
 
 @property (nonatomic, copy, nullable) NSString *avatar;
 
 @property (nonatomic, copy, nullable) NSString *icon;
 
-@property (nonatomic, strong, nullable) NSNumber *number;
+@property (nonatomic, strong, nullable) NSNumber *number __deprecated;
 
-@property (nonatomic, strong, nullable) NSNumber *min;
+@property (nonatomic, strong, nullable) NSNumber *min __deprecated;
 
-@property (nonatomic, strong, nullable) NSNumber *max;
+@property (nonatomic, strong, nullable) NSNumber *max __deprecated;
 
 @property (nonatomic, strong, nullable) id data;
 
 @property (nonatomic, assign) BOOL hideAvatar;
 
 // 用于时间选择的Cell，清空已选时间，及类似情况
-@property (nonatomic, assign) BOOL dateCleanBtn;
+@property (nonatomic, assign) BOOL dateCleanBtn __deprecated;
 
 #pragma mark - Status
 
