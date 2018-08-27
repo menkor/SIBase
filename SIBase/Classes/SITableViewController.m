@@ -50,7 +50,6 @@
 - (instancetype)init {
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
-        
     }
     return self;
 }

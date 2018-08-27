@@ -9,7 +9,6 @@
 #ifndef SIBaseTableViewDefine_h
 #define SIBaseTableViewDefine_h
 
-#import <SIDefine/SIDataBindDefine.h>
 #import "SIFormItem.h"
 
 typedef NSString * (^SIBaseTableCellReuseIdentifierBlock)(NSIndexPath *indexPath);
@@ -21,8 +20,6 @@ static NSString *const kSISingleSectionKey = @"SingleSection";
 static NSString *const kSINoPermossionKey = @"NoPermossion";
 
 static const CGFloat kSIBaseTableViewDefaultCellHeight = 60;
-
-
 
 static NSString *const kSIFormItemKeyTitle = @"title";
 
