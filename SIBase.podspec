@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SIBase'
-    s.version          = '0.1.54'
+    s.version          = '0.1.55'
     s.summary          = 'SIBase.'
     
     # This description is used to generate tags and improve search results.
@@ -27,15 +27,26 @@ Pod::Spec.new do |s|
     s.source = { :git => 'git@git.superid.cn:iOS/SIBase.git', :tag => s.version.to_s }
     
     s.ios.deployment_target = '8.0'
-    s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
-    s.source_files = 'SIBase/Classes/*.{h,m,swift}'
-    s.public_header_files = 'SIBase/Classes/*.h'
+    #s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
+    #s.source_files = 'SIBase/Classes/*.{h,m,swift}'
+    #s.public_header_files = 'SIBase/Classes/*.h'
     
-    s.dependency 'SIUIKit'
-    s.dependency 'SITheme'
-    s.dependency 'SIRequestCenter'
-    s.dependency 'SIRequestKit/Affair'
-    s.dependency 'SIDefine'
-    s.dependency 'SICollector'
+    s.default_subspec = 'SuperId'
+    
+    s.subspec 'Pure' do |ss|
+        ss.source_files = 'SIBase/Classes/Pure/*.{h,m}'
+        ss.public_header_files = 'SIBase/Classes/Pure/*.h'
+        ss.dependency 'SIDefine'
+        ss.dependency 'SIUIKit'
+        ss.dependency 'SITheme'
+    end
+    
+    s.subspec 'SuperId' do |ss|
+        ss.source_files = 'SIBase/Classes/SuperId/*.{h,m}'
+        ss.public_header_files = 'SIBase/Classes/SuperId/*.h'
+        ss.dependency 'SIRequestCenter'
+        ss.dependency 'SIRequestKit/Affair'
+        ss.dependency 'SICollector'
+    end
     
 end

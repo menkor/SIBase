@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
-    - AFNetworking/NSURLSession
   - CocoaLumberjack (3.4.2):
     - CocoaLumberjack/Default (= 3.4.2)
     - CocoaLumberjack/Extensions (= 3.4.2)
@@ -21,112 +6,83 @@ PODS:
   - CocoaLumberjack/Extensions (3.4.2):
     - CocoaLumberjack/Default
   - Masonry (1.1.0)
-  - MJRefresh (3.1.15.3)
-  - SAMKeychain (1.5.3)
-  - SIBase (0.1.50):
-    - SICollector
+  - MJRefresh (3.1.15.6)
+  - SIBase (0.1.54):
+    - SIBase/Pure (= 0.1.54)
+  - SIBase/Pure (0.1.54):
     - SIDefine
-    - SIRequestCenter
-    - SIRequestKit/Affair
     - SITheme
     - SIUIKit
-  - SICollector (0.1.27):
-    - SIRequestCenter
-    - SIRequestKit/Collector
-    - SIUtils/UUID
-    - YCEasyTool
-  - SIDefine (0.1.11):
+  - SIDefine (0.1.17):
     - CocoaLumberjack
-  - SIRequestCenter (0.1.18):
-    - YCRequest
-  - SIRequestKit/Affair (0.8.7)
-  - SIRequestKit/Collector (0.8.7)
   - SITheme (0.1.6):
     - Masonry
-  - SIUIKit (0.1.36):
+  - SIUIKit (0.1.37):
     - Masonry
     - MJRefresh
     - SIDefine
     - SITheme
     - YCEasyTool
     - YYKit
-  - SIUtils/UUID (0.1.22):
-    - SAMKeychain
-  - YCEasyTool (0.2.8):
-    - YCEasyTool/Forever (= 0.2.8)
-    - YCEasyTool/Polling (= 0.2.8)
-    - YCEasyTool/Property (= 0.2.8)
-    - YCEasyTool/Tools (= 0.2.8)
-    - YCEasyTool/UI (= 0.2.8)
-  - YCEasyTool/Forever (0.2.8):
+  - YCEasyTool (0.2.10):
+    - YCEasyTool/Forever (= 0.2.10)
+    - YCEasyTool/Polling (= 0.2.10)
+    - YCEasyTool/Property (= 0.2.10)
+    - YCEasyTool/Tools (= 0.2.10)
+    - YCEasyTool/UI (= 0.2.10)
+  - YCEasyTool/Forever (0.2.10):
     - YCEasyTool/Property
-  - YCEasyTool/Polling (0.2.8)
-  - YCEasyTool/Property (0.2.8)
-  - YCEasyTool/Tools (0.2.8)
-  - YCEasyTool/UI (0.2.8):
-    - YCEasyTool/UI/CollectionView (= 0.2.8)
-    - YCEasyTool/UI/Grid (= 0.2.8)
-    - YCEasyTool/UI/PopMenu (= 0.2.8)
-    - YCEasyTool/UI/Segment (= 0.2.8)
-    - YCEasyTool/UI/TabBarController (= 0.2.8)
-    - YCEasyTool/UI/TreeMenu (= 0.2.8)
-  - YCEasyTool/UI/CollectionView (0.2.8)
-  - YCEasyTool/UI/Grid (0.2.8):
+  - YCEasyTool/Polling (0.2.10)
+  - YCEasyTool/Property (0.2.10)
+  - YCEasyTool/Tools (0.2.10)
+  - YCEasyTool/UI (0.2.10):
+    - YCEasyTool/UI/CollectionView (= 0.2.10)
+    - YCEasyTool/UI/Grid (= 0.2.10)
+    - YCEasyTool/UI/PopMenu (= 0.2.10)
+    - YCEasyTool/UI/Segment (= 0.2.10)
+    - YCEasyTool/UI/TabBarController (= 0.2.10)
+    - YCEasyTool/UI/TreeMenu (= 0.2.10)
+  - YCEasyTool/UI/CollectionView (0.2.10)
+  - YCEasyTool/UI/Grid (0.2.10):
     - YCEasyTool/Tools
     - YCEasyTool/UI/CollectionView
-  - YCEasyTool/UI/PopMenu (0.2.8)
-  - YCEasyTool/UI/Segment (0.2.8)
-  - YCEasyTool/UI/TabBarController (0.2.8)
-  - YCEasyTool/UI/TreeMenu (0.2.8)
-  - YCRequest (0.1.5):
-    - AFNetworking
-  - YYKit (1.0.9):
-    - YYKit/no-arc (= 1.0.9)
-  - YYKit/no-arc (1.0.9)
+  - YCEasyTool/UI/PopMenu (0.2.10)
+  - YCEasyTool/UI/Segment (0.2.10)
+  - YCEasyTool/UI/TabBarController (0.2.10)
+  - YCEasyTool/UI/TreeMenu (0.2.10)
+  - YYKit (2.0.11):
+    - YYKit/no-arc (= 2.0.11)
+  - YYKit/no-arc (2.0.11)
 
 DEPENDENCIES:
   - SIBase (from `../`)
 
 SPEC REPOS:
   "git@git.superid.cn:iOS/SISpecs.git":
-    - SICollector
     - SIDefine
-    - SIRequestCenter
-    - SIRequestKit
     - SITheme
     - SIUIKit
-    - SIUtils
+    - YYKit
   https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
     - CocoaLumberjack
     - Masonry
     - MJRefresh
-    - SAMKeychain
     - YCEasyTool
-    - YCRequest
-    - YYKit
 
 EXTERNAL SOURCES:
   SIBase:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  SIBase: f41c1a2c5813f1640db4e916878fb359acc0e6bb
-  SICollector: 493405ed4297d9455e1d1990700b955f86da56e3
-  SIDefine: d876be396f8c328b3c273569589e3f7f21cee5a2
-  SIRequestCenter: 4190e66dbacf3b47c902933d1049a52268449c4f
-  SIRequestKit: c1cde7ff93f39d432fb02757114fac45695cdaf7
+  MJRefresh: 0efa19656679d70a0f47cbe76e56c2271fe53a97
+  SIBase: f910e2d9d569d929597f1558b6fc060e129d144a
+  SIDefine: 240cebabc85c9d5c17dbc291c5e0ae39a20cc513
   SITheme: 73223f4b85f9aa3674d8e8ef924fa1e1c36edb4b
-  SIUIKit: bb28a991f6de3ee6a7b7898fbdae1f74b4baba84
-  SIUtils: 94648f04b7edd9103a668deb1a49a214169fb7bc
-  YCEasyTool: 1706776cee2cd4dab65a1ea0b72ddd1598aee07e
-  YCRequest: df739e5275d86611e06c40fefe593362820a4cbd
-  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  SIUIKit: ebca686762d518687e959bbdfa1dfbd9623d2cc2
+  YCEasyTool: 4bf22a7da56d71c89cf610562430ebfa794b7368
+  YYKit: c9c9bbb1f30ce9adfcd3da31c80f250d628aba60
 
 PODFILE CHECKSUM: a754725bd5d3acb57dbfc1f91da12cb9e6fb47f0
 
