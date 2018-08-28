@@ -41,16 +41,6 @@
 
 @property (nonatomic, readonly) SINavigationBar *naviBar;
 
-#pragma mark - Reachability
-
-- (void)reachabilityHandler:(AFNetworkReachabilityStatus)status;
-
-#pragma mark - Network Activity
-
-@property (nonatomic, assign) BOOL customNetworkActivity;
-
-@property (nonatomic, copy) NSString *networkActivityHint;
-
 #pragma mark - Collector
 
 @property (nonatomic, copy) NSString *pageUri;

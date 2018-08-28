@@ -8,8 +8,6 @@
 
 #import "SIViewController.h"
 #import <Masonry/Masonry.h>
-#import <SIDefine/SIGlobalEvent.h>
-#import <SIRequestCenter/SIRequestCenter.h>
 #import <SITheme/SIColor.h>
 
 @interface SIViewController ()
@@ -30,7 +28,6 @@
         _reloadWhenAppear = YES;
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.hidesBottomBarWhenPushed = YES;
-        self.customNetworkActivity = NO;
     }
     return self;
 }
@@ -41,21 +38,12 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.translucent = YES;
     [self defaultUI];
-    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager manager];
-    __weak __typeof__(self) weak_self = self;
-    [reachabilityManager startMonitoring];
-    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        [weak_self reachabilityHandler:status];
-    }];
     // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.si_viewAppeared = YES;
-    if (!self.startedNetworkActivity) {
-        [self hideWaiting];
-    }
 
     if (_reloadWhenAppear) {
         [self loadData];
@@ -76,9 +64,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.si_viewAppeared = NO;
-    if (self.startedNetworkActivity) {
-        [self hideWaiting];
-    }
     [self.view endEditing:YES];
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:YES];
@@ -86,9 +71,6 @@
     if (_customNaviBar) {
         self.navigationController.navigationBarHidden = NO;
     }
-}
-
-- (void)reachabilityHandler:(AFNetworkReachabilityStatus)status {
 }
 
 - (void)loadData {
@@ -144,39 +126,6 @@
         if (viewControllers.count > 1 && viewControllers.lastObject == self) {
             [_naviBar.left.add itemWithType:SINavigationItemTypeCustomImage resource:@"ic_back_chevron" selector:@selector(goBack)];
         }
-    }
-}
-
-- (void)setCustomNetworkActivity:(BOOL)customNetworkActivity {
-    _customNetworkActivity = customNetworkActivity;
-    if (_customNetworkActivity) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kSIRequestStatusMessage object:nil];
-    } else {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_requestStatus:) name:kSIRequestStatusMessage object:nil];
-    }
-}
-
-- (void)_requestStatus:(NSNotification *)sender {
-    if (!_si_viewAppeared) {
-        return;
-    }
-    NSDictionary *userInfo = [sender object];
-    SIRequestStatus status = [userInfo[@"status"] integerValue];
-    id api = userInfo[@"api"];
-    @try {
-        NSString *category = [api valueForKeyPath:@"srk_config.category"];
-        if ([category isEqualToString:@"Collector"]) {
-            return;
-        }
-    } @finally {
-    }
-
-    if (status == SIRequestStatusBegin) {
-        self.startedNetworkActivity = YES;
-        [self showWaiting:self.networkActivityHint];
-    } else {
-        self.startedNetworkActivity = NO;
-        [self hideWaiting];
     }
 }
 
