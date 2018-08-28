@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nullable) NSString *icon;
 
-@property (nonatomic, strong, nullable) NSNumber *number __deprecated;
+@property (nonatomic, strong, nullable) NSNumber *number;
 
 @property (nonatomic, strong, nullable) NSNumber *min __deprecated;
 
