@@ -56,7 +56,9 @@
         [viewController setAffair:source.affair];
     }
     self.next = viewController;
-    source.si_viewAppeared = NO;
+    if ([source isKindOfClass:[SIViewController class]]) {
+        source.si_viewAppeared = NO;
+    }
     [super pushViewController:viewController animated:animated];
     dispatch_async(dispatch_get_main_queue(), ^{
         self.next = nil;
@@ -65,7 +67,9 @@
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated {
     SIViewController *source = (SIViewController *)self.topViewController;
-    source.si_viewAppeared = NO;
+    if ([source isKindOfClass:[SIViewController class]]) {
+        source.si_viewAppeared = NO;
+    }
     return [super popViewControllerAnimated:animated];
 }
 
