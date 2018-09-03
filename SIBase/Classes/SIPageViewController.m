@@ -73,6 +73,9 @@
     [super viewDidAppear:animated];
     if (self.currentIndex == -1) {
         [self switchToPage:0];
+        [self.subControllerArray yc_eachIndex:^(NSUInteger idx, __kindof SIViewController *obj) {
+            obj.si_viewAppeared = idx == 0;
+        }];
     }
 }
 
