@@ -280,7 +280,7 @@
         [mutableCellArray removeObjectAtIndex:indexPath.row];
         self.dataSource[key] = mutableCellArray;
     }
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView reloadData];
 }
 
