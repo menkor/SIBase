@@ -7,12 +7,19 @@
 //
 
 #import "SIViewController.h"
+#import "SINavigationController.h"
 #import <Masonry/Masonry.h>
 #import <SICollector/SICollector.h>
 #import <SIDefine/SIGlobalEvent.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SITheme/SIColor.h>
 #import <YCEasyTool/YCProperty.h>
+
+@interface SINavigationController ()
+
+@property (nonatomic, assign) BOOL si_isBeingPresented;
+
+@end
 
 @interface SIViewController ()
 
@@ -103,6 +110,10 @@
 
 - (void)defaultUI {
     self.view.backgroundColor = [SIColor whiteColor];
+    if (self.navigationController.isBeingPresented) {
+        self.navigationItem.leftBarButtonItem = [self barItemWithIcon:@"ic_back_chevron" selector:@selector(goBack)];
+        return;
+    }
     NSArray *viewControllers = self.navigationController.viewControllers;
     if (viewControllers.count > 1 && viewControllers.lastObject == self) {
         self.navigationItem.hidesBackButton = YES;
@@ -113,7 +124,12 @@
 }
 
 - (void)goBack {
-    [self.navigationController popViewControllerAnimated:YES];
+    SINavigationController *navi = self.navigationController;
+    if (navi.si_isBeingPresented && navi.viewControllers.count == 1) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+    [navi popViewControllerAnimated:YES];
 }
 
 - (void)backward:(NSUInteger)level {

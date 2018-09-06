@@ -21,6 +21,8 @@
 
 @property (nonatomic, weak) SIViewController *next;
 
+@property (nonatomic, assign) BOOL si_isBeingPresented;
+
 @end
 
 @implementation SINavigationController
@@ -43,6 +45,11 @@
     [super viewDidLoad];
     [self setGlobalUI];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.si_isBeingPresented = self.isBeingPresented;
 }
 
 - (void)pushViewController:(SIViewController *)viewController animated:(BOOL)animated {
