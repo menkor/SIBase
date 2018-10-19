@@ -13,7 +13,6 @@
 #import <SIDefine/SIGlobalEvent.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SITheme/SIColor.h>
-#import <YCEasyTool/YCProperty.h>
 
 @interface SINavigationController ()
 
@@ -186,7 +185,7 @@
     NSDictionary *userInfo = [sender object];
     SIRequestStatus status = [userInfo[@"status"] integerValue];
     NSObject *api = userInfo[@"api"];
-    BOOL silent = [api.yc_store(@"silent", nil) boolValue];
+    BOOL silent = [api.ycr_store(@"silent", nil) boolValue];
     if (silent) {
         return;
     }
