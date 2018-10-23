@@ -41,6 +41,8 @@
 
 @property (nonatomic, assign) BOOL customNaviBar;
 
+@property (nonatomic, assign) BOOL hideNavigationBar;
+
 @property (nonatomic, readonly) SINavigationBar *naviBar;
 
 @property (nonatomic, strong) SIAffairInfo *affair;

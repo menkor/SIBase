@@ -71,7 +71,7 @@
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:NO];
     }
-    if (_customNaviBar) {
+    if (_customNaviBar || _hideNavigationBar) {
         self.navigationController.navigationBarHidden = YES;
     }
 }
@@ -96,7 +96,7 @@
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:YES];
     }
-    if (_customNaviBar) {
+    if (_customNaviBar || _hideNavigationBar) {
         self.navigationController.navigationBarHidden = NO;
     }
 }
