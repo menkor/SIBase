@@ -151,6 +151,27 @@
     }
 }
 
+- (UIEdgeInsets)si_safeAreaInset {
+    if (@available(iOS 11.0, *)) {
+        return self.view.safeAreaInsets;
+    }
+    return UIEdgeInsetsZero;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    UIEdgeInsets safeAreaInsets = [self si_safeAreaInset];
+    CGFloat height = 44.0;
+    CGFloat statusHeight = self.prefersStatusBarHidden ? 0 : 20;
+    height += safeAreaInsets.top > 0 ? safeAreaInsets.top : statusHeight;
+    if (_customNaviBar) {
+        [_naviBar mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(height);
+        }];
+        _naviBar.topBaseline = safeAreaInsets.top > 0 ? safeAreaInsets.top : statusHeight;
+    }
+}
+
 - (void)setCustomNaviBar:(BOOL)customNaviBar {
     _customNaviBar = customNaviBar;
     if (_customNaviBar && !_naviBar) {
@@ -159,8 +180,8 @@
         [_naviBar setTheme:SINavigationThemeClear];
         [self.view addSubview:_naviBar];
         [_naviBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.mas_equalTo(self.view);
-            make.height.mas_equalTo([[UIApplication sharedApplication] statusBarFrame].size.height + 44);
+            make.left.right.top.mas_equalTo(self.view);
+            make.height.mas_equalTo(44);
         }];
         NSArray *viewControllers = self.navigationController.viewControllers;
         if (viewControllers.count > 1 && viewControllers.lastObject == self) {
