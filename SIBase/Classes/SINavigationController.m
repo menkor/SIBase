@@ -49,7 +49,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.si_isBeingPresented = self.isBeingPresented;
+    if (self.parentViewController) {
+        self.si_isBeingPresented = self.parentViewController.isBeingPresented;
+    } else {
+        self.si_isBeingPresented = self.isBeingPresented;
+    }
 }
 
 - (void)pushViewController:(SIViewController *)viewController animated:(BOOL)animated {
