@@ -205,19 +205,6 @@
     }
     NSDictionary *userInfo = [sender object];
     SIRequestStatus status = [userInfo[@"status"] integerValue];
-    NSObject *api = userInfo[@"api"];
-    BOOL silent = [api.ycr_store(@"silent", nil) boolValue];
-    if (silent) {
-        return;
-    }
-    @try {
-        NSString *category = [api valueForKeyPath:@"srk_config.category"];
-        if ([category isEqualToString:@"Collector"]) {
-            return;
-        }
-    } @finally {
-    }
-
     if (status == SIRequestStatusBegin) {
         self.startedNetworkActivity = YES;
         [self showWaiting:self.networkActivityHint];
