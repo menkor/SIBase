@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *identifier;
 
+@property (nonatomic, assign) CGFloat width;
+
 #pragma mark - UI
 
 @property (nonatomic, copy, nullable) NSString *title;
