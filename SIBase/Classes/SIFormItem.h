@@ -28,9 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nullable) NSString *content;
 
-@property (nonatomic, copy, nullable) NSString *minValue;// __deprecated;
+@property (nonatomic, copy, nullable) NSString *minValue; // __deprecated;
 
-@property (nonatomic, copy, nullable) NSString *maxValue;// __deprecated;
+@property (nonatomic, copy, nullable) NSString *maxValue; // __deprecated;
 
 @property (nonatomic, copy, nullable) NSString *avatar;
 
@@ -38,9 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSNumber *number;
 
-@property (nonatomic, strong, nullable) NSNumber *min;// __deprecated;
+@property (nonatomic, strong, nullable) NSNumber *min; // __deprecated;
 
-@property (nonatomic, strong, nullable) NSNumber *max;// __deprecated;
+@property (nonatomic, strong, nullable) NSNumber *max; // __deprecated;
 
 @property (nonatomic, strong, nullable) id data;
 
