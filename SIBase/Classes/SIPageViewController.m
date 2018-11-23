@@ -101,6 +101,7 @@
         [self willSwitchToPage:nextPage];
     }
     self.currentIndex = nextPage;
+    [self.segment setSelected:YES segmentAtIndex:self.currentIndex];
     __weak __typeof__(self) weak_self = self;
     [self.pageViewController setViewControllers:@[toVC]
                                       direction:direction
