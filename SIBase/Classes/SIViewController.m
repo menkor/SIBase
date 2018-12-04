@@ -61,10 +61,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.si_viewAppeared = YES;
-    if (!self.startedNetworkActivity) {
+    if (!self.startedNetworkActivity && !self.customNetworkActivity) {
         [self hideWaiting];
     }
-
     if (_reloadWhenAppear) {
         [self loadData];
     }
