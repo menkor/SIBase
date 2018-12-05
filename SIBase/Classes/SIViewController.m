@@ -61,9 +61,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.si_viewAppeared = YES;
-    if (!self.startedNetworkActivity && !self.customNetworkActivity) {
+    if (!self.startedNetworkActivity) {
         [self hideWaiting];
     }
+
     if (_reloadWhenAppear) {
         [self loadData];
     }
@@ -159,15 +160,15 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    UIEdgeInsets safeAreaInsets = [self si_safeAreaInset];
+    CGFloat height = 44.0;
+    CGFloat statusHeight = self.prefersStatusBarHidden ? 0 : 20;
+    height += safeAreaInsets.top > 0 ? safeAreaInsets.top : statusHeight;
     if (_customNaviBar) {
-        UIEdgeInsets safeAreaInsets = [self si_safeAreaInset];
-        CGFloat height = 44.0;
-        CGFloat statusHeight = self.prefersStatusBarHidden ? 0 : 20;
-        height += safeAreaInsets.top > 0 ? safeAreaInsets.top : statusHeight;
         [_naviBar mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(height);
         }];
-        _naviBar.topBaseline = safeAreaInsets.top > 0 ? (safeAreaInsets.top) : statusHeight;
+        _naviBar.topBaseline = safeAreaInsets.top > 0 ? safeAreaInsets.top : statusHeight;
     }
 }
 
