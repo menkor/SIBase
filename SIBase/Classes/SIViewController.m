@@ -61,7 +61,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.si_viewAppeared = YES;
-    if (!self.startedNetworkActivity) {
+    if (!self.startedNetworkActivity && !self.customNetworkActivity) {
         [self hideWaiting];
     }
 
@@ -71,9 +71,7 @@
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:NO];
     }
-    if (_customNaviBar || _hideNavigationBar) {
-        self.navigationController.navigationBarHidden = YES;
-    }
+    self.navigationController.navigationBarHidden = _customNaviBar || _hideNavigationBar;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
