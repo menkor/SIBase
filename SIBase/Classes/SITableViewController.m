@@ -386,6 +386,9 @@
     }
     //self.definesPresentationContext = YES;
     searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 36);
+    if ([self isKindOfClass:[SITableViewController class]]) {
+        ((SITableViewController *)self).tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    }
     [searchController.searchBar sizeToFit];
     searchController.delegate = (id)self;
     searchController.searchBar.delegate = (id)self;
