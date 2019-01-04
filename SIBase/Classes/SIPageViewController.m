@@ -46,7 +46,7 @@
     _currentIndex = -1;
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
-    if (self.buildinMenu) {
+    if (self.buildinMenu && self.pageTitleArray.count > 1) {
         if (CGSizeEqualToSize(self.segmentSize, CGSizeZero)) {
             self.segmentSize = CGSizeMake(CGRectGetWidth(self.view.frame), 40);
         }
@@ -63,6 +63,9 @@
         }];
     }
     self.hideNavigationBarLine = NO;
+    if (self.pageTitleArray.count <= 1) {
+        self.scrollEnabled = NO;
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -101,7 +104,7 @@
         [self willSwitchToPage:nextPage];
     }
     self.currentIndex = nextPage;
-    [self.segment setSelected:YES segmentAtIndex:self.currentIndex];
+    [_segment setSelected:YES segmentAtIndex:self.currentIndex];
     __weak __typeof__(self) weak_self = self;
     [self.pageViewController setViewControllers:@[toVC]
                                       direction:direction
