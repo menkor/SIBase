@@ -37,6 +37,8 @@
 
 @property (nonatomic, assign) BOOL reloadWhenAppear;
 
+@property (nonatomic, assign) BOOL reloadOnce;
+
 @property (nonatomic, assign) BOOL hideNavigationBarLine;
 
 @property (nonatomic, assign) BOOL customNaviBar;

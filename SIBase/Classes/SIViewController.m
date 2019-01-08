@@ -65,7 +65,8 @@
         [self hideWaiting];
     }
 
-    if (_reloadWhenAppear) {
+    if (_reloadWhenAppear || _reloadOnce) {
+        _reloadOnce = NO;
         [self loadData];
     }
     if (_hideNavigationBarLine) {
