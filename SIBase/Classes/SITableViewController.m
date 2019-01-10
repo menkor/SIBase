@@ -35,7 +35,6 @@
 @implementation SITableViewController {
     BOOL _emptyFlag;
     BOOL _footerFlag;
-    BOOL _registerFlag;
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
@@ -92,7 +91,6 @@
 #pragma mark - Cell
 
 - (void)setCellClass:(Class)cellClass {
-    _registerFlag = _tableView != nil;
     _cellClass = cellClass;
     [_tableView registerClass:cellClass forCellReuseIdentifier:NSStringFromClass(cellClass)];
 }
@@ -331,12 +329,10 @@
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(self.view);
         }];
-        if (!_registerFlag) {
-            if (self.cellClassArray) {
-                self.cellClassArray = self.cellClassArray;
-            } else if (self.cellClass) {
-                self.cellClass = self.cellClass;
-            }
+        if (self.cellClassArray) {
+            self.cellClassArray = self.cellClassArray;
+        } else if (self.cellClass) {
+            self.cellClass = self.cellClass;
         }
     }
     return _tableView;
