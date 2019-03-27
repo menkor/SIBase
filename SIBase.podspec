@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SIBase'
-    s.version          = '0.1.87'
+    s.version          = '0.1.88'
     s.summary          = 'SIBase.'
     
     # This description is used to generate tags and improve search results.
