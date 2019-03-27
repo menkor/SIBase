@@ -50,4 +50,10 @@ static NSString *const kSIFormItemThemeContentTextAlignment = @"contentTextAlign
 
 static NSString *const kSIFormItemThemeContentClearButtonMode = @"contentClearButtonMode"; //default is `UITextFieldViewModeNever`
 
+static NSString *const kSIFormItemThemeBackgroundColor = @"backgroundColor"; //default is `UITextFieldViewModeNever`
+
+static NSString *const kSIFormItemThemeValidatorType = @"validatorType"; // default is `SIInputValidatorTypeNone`
+
+static NSString *const kSIFormItemThemeValidatorRegex = @"validatorRegex";
+
 #endif /* SIFormItemDefine_h */

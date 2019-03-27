@@ -213,6 +213,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell<SIDataBindProtocol> *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<SIFormItemProtocol> data = [self objectAtIndexPath:indexPath];
     if ([cell respondsToSelector:@selector(actionBlock)]) {
         __weak __typeof__(self) weak_self = self;
         [cell setActionBlock:^(id action) {
@@ -223,11 +224,17 @@
                 });
                 return;
             }
+            if ([data respondsToSelector:@selector(command)]) {
+                id<SIFormItemCommandProtocol> command = data.command;
+                if ([command respondsToSelector:@selector(execute:)]) {
+                    [command execute:action];
+                    return;
+                }
+            }
             [weak_self action:action atIndexPath:indexPath];
         }];
     }
     if ([cell respondsToSelector:@selector(reloadWithData:)]) {
-        id<SIFormItemProtocol> data = [self objectAtIndexPath:indexPath];
         [cell reloadWithData:data];
         if ([cell respondsToSelector:@selector(bottomLine)]) {
             UIView *line = [cell valueForKey:@"_bottomLine"];
@@ -243,6 +250,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<SIFormItemProtocol> data = [self objectAtIndexPath:indexPath];
+    if ([data respondsToSelector:@selector(command)]) {
+        id<SIFormItemCommandProtocol> command = data.command;
+        if ([command respondsToSelector:@selector(execute:)]) {
+            [command execute:nil];
+            return;
+        }
+    }
     [self action:nil atIndexPath:indexPath];
 }
 

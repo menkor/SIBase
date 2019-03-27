@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <SIDefine/SIDataBindDefine.h>
 
+@class RACCommand;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SIFormItem : NSObject <SIFormItemProtocol>
@@ -84,6 +85,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Compare
 
 @property (nonatomic, strong, nullable) NSNumber *id_p;
+
+#pragma mark - RACCommand
+
+@property (nonatomic, strong, nullable) RACCommand *command;
 
 @end
 NS_ASSUME_NONNULL_END
