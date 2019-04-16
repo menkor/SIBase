@@ -308,17 +308,23 @@
 }
 
 - (void)showMessage:(NSString *)message {
-    [self.view endEditing:YES];
+    if (self.viewLoaded) {
+        [self.view endEditing:YES];
+    }
     [SIMessageBox showMessage:message];
 }
 
 - (void)showError:(NSString *)error {
-    [self.view endEditing:YES];
+    if (self.viewLoaded) {
+        [self.view endEditing:YES];
+    }
     [SIMessageBox showError:error];
 }
 
 - (void)showWaiting:(NSString *)hint {
-    [self.view endEditing:YES];
+    if (self.viewLoaded) {
+        [self.view endEditing:YES];
+    }
     [SIMessageBox showWaiting:hint];
 }
 
