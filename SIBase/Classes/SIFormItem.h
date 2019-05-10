@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nullable) NSDictionary *theme;
 
-#pragma mark - Cell
+#pragma mark - Some
 
 @property (nonatomic, weak, nullable) id some;
 
