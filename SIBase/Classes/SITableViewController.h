@@ -68,7 +68,7 @@
 
 #pragma mark - Search
 
-@property (nonatomic, copy, readonly) NSString *keyword;
+@property (nonatomic, copy) NSString *keyword;
 
 @end
 

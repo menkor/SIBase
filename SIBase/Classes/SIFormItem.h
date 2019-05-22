@@ -21,6 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat width;
 
+#pragma mark - Index
+
+@property (nonatomic, assign) NSInteger section;
+
+@property (nonatomic, assign) NSInteger row;
+
 #pragma mark - UI
 
 @property (nonatomic, copy, nullable) NSString *title;
@@ -48,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL hideAvatar;
 
 // 用于时间选择的Cell，清空已选时间，及类似情况
-@property (nonatomic, assign) BOOL dateCleanBtn __deprecated;
+@property (nonatomic, assign) BOOL dateCleanBtn; // __deprecated;
 
 #pragma mark - Status
 

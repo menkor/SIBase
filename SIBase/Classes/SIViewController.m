@@ -46,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.si_viewAppeared = YES;
-    self.navigationController.navigationBarHidden = NO;
+    [self navigationBarHandler];
     self.navigationController.navigationBar.translucent = YES;
     [self defaultUI];
     AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager manager];
@@ -58,25 +58,30 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)navigationBarHandler {
+    if ([self.parentViewController isKindOfClass:[UINavigationController class]]) {
+        self.navigationController.navigationBarHidden = _customNaviBar || _hideNavigationBar;
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.si_viewAppeared = YES;
     if (!self.startedNetworkActivity && !self.customNetworkActivity) {
         [self hideWaiting];
     }
-
-    if (_reloadWhenAppear || _reloadOnce) {
-        _reloadOnce = NO;
-        [self loadData];
-    }
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:NO];
     }
-    self.navigationController.navigationBarHidden = _customNaviBar || _hideNavigationBar;
+    [self navigationBarHandler];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    if (_reloadWhenAppear || _reloadOnce) {
+        _reloadOnce = NO;
+        [self loadData];
+    }
     [self eventTracking];
 }
 
@@ -94,9 +99,6 @@
     [self.view endEditing:YES];
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:YES];
-    }
-    if (_customNaviBar || _hideNavigationBar) {
-        self.navigationController.navigationBarHidden = NO;
     }
 }
 

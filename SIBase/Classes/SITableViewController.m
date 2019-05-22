@@ -28,14 +28,9 @@
 
 @property (nonatomic, assign) CGFloat pollingDuration;
 
-@property (nonatomic, copy) NSString *keyword;
-
 @end
 
-@implementation SITableViewController {
-    BOOL _emptyFlag;
-    BOOL _footerFlag;
-}
+@implementation SITableViewController
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super init];
@@ -92,7 +87,9 @@
 
 - (void)setCellClass:(Class)cellClass {
     _cellClass = cellClass;
-    [_tableView registerClass:cellClass forCellReuseIdentifier:NSStringFromClass(cellClass)];
+    if (cellClass) {
+        [_tableView registerClass:cellClass forCellReuseIdentifier:NSStringFromClass(cellClass)];
+    }
 }
 
 - (void)setCellClassArray:(NSArray<Class> *)cellClassArray {
