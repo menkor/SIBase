@@ -56,6 +56,10 @@
     }
 }
 
+- (void)setNavigationBarHidden:(BOOL)navigationBarHidden animated:(BOOL)animated {
+    [super setNavigationBarHidden:navigationBarHidden animated:animated];
+}
+
 - (void)pushViewController:(SIViewController *)viewController animated:(BOOL)animated {
     if (self.next) {
         return;
