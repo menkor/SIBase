@@ -26,8 +26,6 @@
 
 @property (nonatomic, assign) BOOL si_viewAppeared;
 
-@property (nonatomic, assign) BOOL startedNetworkActivity;
-
 @end
 
 @implementation SIViewController
@@ -67,9 +65,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.si_viewAppeared = YES;
-    if (!self.startedNetworkActivity && !self.customNetworkActivity) {
-        [self hideWaiting];
-    }
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:NO];
     }
@@ -93,9 +88,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.si_viewAppeared = NO;
-    if (self.startedNetworkActivity) {
-        [self hideWaiting];
-    }
     [self.view endEditing:YES];
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:YES];
@@ -188,30 +180,6 @@
         if (viewControllers.count > 1 && viewControllers.lastObject == self) {
             [_naviBar.left.add itemWithType:SINavigationItemTypeCustomImage resource:@"ic_back_chevron" selector:@selector(goBack)];
         }
-    }
-}
-
-- (void)setCustomNetworkActivity:(BOOL)customNetworkActivity {
-    _customNetworkActivity = customNetworkActivity;
-    if (_customNetworkActivity) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kSIRequestStatusMessage object:nil];
-    } else {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_requestStatus:) name:kSIRequestStatusMessage object:nil];
-    }
-}
-
-- (void)_requestStatus:(NSNotification *)sender {
-    if (!_si_viewAppeared) {
-        return;
-    }
-    NSDictionary *userInfo = [sender object];
-    SIRequestStatus status = [userInfo[@"status"] integerValue];
-    if (status == SIRequestStatusBegin) {
-        self.startedNetworkActivity = YES;
-        [self showWaiting:self.networkActivityHint];
-    } else {
-        self.startedNetworkActivity = NO;
-        [self hideWaiting];
     }
 }
 
