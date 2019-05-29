@@ -36,7 +36,6 @@
         _reloadWhenAppear = YES;
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.hidesBottomBarWhenPushed = YES;
-        self.customNetworkActivity = NO;
     }
     return self;
 }

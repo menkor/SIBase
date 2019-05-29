@@ -41,7 +41,6 @@
     [super viewDidLoad];
     _scrollEnabled = YES;
     self.buildinMenu = YES;
-    self.customNetworkActivity = YES;
     [self presetPages];
     _currentIndex = -1;
     [self addChildViewController:self.pageViewController];
