@@ -327,6 +327,9 @@
 #pragma mark - Lazy Load
 
 - (UITableView *)tableView {
+    if (!self.viewLoaded) {
+        return nil;
+    }
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.style];
         _tableView.dataSource = self;
