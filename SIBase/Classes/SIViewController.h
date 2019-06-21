@@ -10,6 +10,8 @@
 #import <SIDefine/SIGlobalMacro.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SIRequestKit/SIAffairInfo.h>
+#import <SITheme/SIColor.h>
+#import <SITheme/SIFont.h>
 #import <SIUIKit/SIAlertView.h>
 #import <SIUIKit/SIMessageBox.h>
 #import <SIUIKit/SINavigationBar.h>
