@@ -31,8 +31,6 @@
 
 @property (nonatomic, assign) CGSize segmentSize;
 
-@property (nonatomic, assign) CGFloat topOffset;
-
 @end
 
 @implementation SIPageViewController
@@ -49,9 +47,11 @@
         if (CGSizeEqualToSize(self.segmentSize, CGSizeZero)) {
             self.segmentSize = CGSizeMake(CGRectGetWidth(self.view.frame), 40);
         }
+        if (UIEdgeInsetsEqualToEdgeInsets(self.insets, UIEdgeInsetsZero)) {
+            self.insets = UIEdgeInsetsMake(40, 0, 0, 0);
+        }
         [self.pageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.mas_equalTo(self.view);
-            make.top.mas_equalTo(self.view).offset(self.topOffset > 0 ? self.topOffset : 40);
+            make.edges.mas_equalTo(self.view).insets(self.insets);
         }];
         [self.segment setSelected:YES segmentAtIndex:0];
         [self.segment layoutIfNeeded];

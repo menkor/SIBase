@@ -259,7 +259,7 @@
 }
 
 - (void)reloadIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self reloadIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)reloadIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation {

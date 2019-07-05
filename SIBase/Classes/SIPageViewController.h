@@ -32,6 +32,8 @@
 
 @property (nonatomic, assign) BOOL buildinMenu;
 
+@property (nonatomic, assign) UIEdgeInsets insets;
+
 @property (nonatomic, assign) BOOL scrollEnabled; //default is `YES`
 
 - (__kindof SIViewController *)childAtPage:(NSUInteger)page;

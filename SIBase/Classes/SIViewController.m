@@ -73,10 +73,32 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (_reloadWhenAppear || _reloadOnce) {
-        _reloadOnce = NO;
         [self loadData];
+        _reloadOnce = NO;
     }
     [self eventTracking];
+}
+
+- (void)setAutoShowNetworkActivity:(BOOL)autoShowNetworkActivity {
+    _autoShowNetworkActivity = autoShowNetworkActivity;
+    if (_autoShowNetworkActivity) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_requestStatus:) name:kSIRequestStatusMessage object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kSIRequestStatusMessage object:nil];
+    }
+}
+
+- (void)_requestStatus:(NSNotification *)sender {
+    if (!_si_viewAppeared) {
+        return;
+    }
+    NSDictionary *userInfo = [sender object];
+    SIRequestStatus status = [userInfo[@"status"] integerValue];
+    if (status == SIRequestStatusBegin) {
+        [SIMessageBox showWaiting:nil hideAfterDelay:5];
+    } else {
+        [SIMessageBox hideWaiting];
+    }
 }
 
 - (void)showNavigationBarLine:(BOOL)show {

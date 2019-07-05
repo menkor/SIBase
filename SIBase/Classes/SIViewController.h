@@ -47,6 +47,8 @@
 
 @property (nonatomic, assign) BOOL hideNavigationBar;
 
+@property (nonatomic, assign) BOOL autoShowNetworkActivity;
+
 @property (nonatomic, readonly) SINavigationBar *naviBar;
 
 @property (nonatomic, strong) SIAffairInfo *affair;
