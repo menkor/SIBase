@@ -34,6 +34,7 @@
     self = [super init];
     if (self) {
         _reloadWhenAppear = YES;
+        _noReloadOnce = NO;
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.hidesBottomBarWhenPushed = YES;
     }
@@ -42,7 +43,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.si_viewAppeared = YES;
     [self navigationBarHandler];
     self.navigationController.navigationBar.translucent = YES;
     [self defaultUI];
@@ -72,9 +72,13 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (_reloadWhenAppear || _reloadOnce) {
-        [self loadData];
-        _reloadOnce = NO;
+    if (_noReloadOnce) {
+        _noReloadOnce = NO;
+    } else {
+        if (_reloadWhenAppear || _reloadOnce) {
+            [self loadData];
+            _reloadOnce = NO;
+        }
     }
     [self eventTracking];
 }

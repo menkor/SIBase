@@ -41,6 +41,8 @@
 
 @property (nonatomic, assign) BOOL reloadOnce;
 
+@property (nonatomic, assign) BOOL noReloadOnce;
+
 @property (nonatomic, assign) BOOL hideNavigationBarLine;
 
 @property (nonatomic, assign) BOOL customNaviBar;
@@ -48,6 +50,8 @@
 @property (nonatomic, assign) BOOL hideNavigationBar;
 
 @property (nonatomic, assign) BOOL autoShowNetworkActivity;
+
+@property (nonatomic, readonly) BOOL si_viewAppeared;
 
 @property (nonatomic, readonly) SINavigationBar *naviBar;
 
