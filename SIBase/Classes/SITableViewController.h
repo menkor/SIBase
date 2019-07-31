@@ -62,9 +62,13 @@
 
 - (void)reloadIndexPath:(NSIndexPath *)indexPath;
 
+- (void)silentReloadIndexPath:(NSIndexPath *)indexPath;
+
 - (void)reloadIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation;
 
 - (void)removeIndexPath:(NSIndexPath *)indexPath;
+
+- (void)reloadDataAndKeepOffset;
 
 #pragma mark - Search
 

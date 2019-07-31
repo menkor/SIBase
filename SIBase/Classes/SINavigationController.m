@@ -65,16 +65,26 @@
         return;
     }
     SIViewController *source = (SIViewController *)self.topViewController;
+    BOOL superidVC = [source isKindOfClass:[SIViewController class]];
     if ([viewController respondsToSelector:@selector(affair)] &&
         [source respondsToSelector:@selector(affair)] &&
         source.affair) {
         [viewController setAffair:source.affair];
     }
     self.next = viewController;
-    if ([source isKindOfClass:[SIViewController class]]) {
+    if (superidVC) {
         source.si_viewAppeared = NO;
     }
-    [super pushViewController:viewController animated:animated];
+    if (superidVC && source.killWhenPushed) {
+        NSMutableArray *viewControllers = self.viewControllers.mutableCopy;
+        if (viewControllers.count > 1) {
+            [viewControllers removeLastObject];
+        }
+        [viewControllers addObject:viewController];
+        [super setViewControllers:viewControllers animated:YES];
+    } else {
+        [super pushViewController:viewController animated:animated];
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         self.next = nil;
     });

@@ -262,13 +262,13 @@
     [self reloadIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
 }
 
+- (void)silentReloadIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell<SIDataBindProtocol> *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell reloadWithData:[self objectAtIndexPath:indexPath]];
+}
+
 - (void)reloadIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation {
-    if (animation == UITableViewRowAnimationNone) {
-        UITableViewCell<SIDataBindProtocol> *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell reloadWithData:[self objectAtIndexPath:indexPath]];
-        return;
-    }
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:animation];
 }
 
 - (void)removeIndexPath:(NSIndexPath *)indexPath {
@@ -292,6 +292,17 @@
     }
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView reloadData];
+}
+
+- (void)reloadDataAndKeepOffset {
+    [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
+    CGSize beforeContentSize = self.tableView.contentSize;
+    [self.tableView reloadData];
+    [self.tableView layoutIfNeeded];
+    CGSize afterContentSize = self.tableView.contentSize;
+    CGPoint contentOffset = self.tableView.contentOffset;
+    CGPoint newOffset = CGPointMake(contentOffset.x + (afterContentSize.width - beforeContentSize.width), contentOffset.y + (afterContentSize.height - beforeContentSize.height));
+    [self.tableView setContentOffset:newOffset animated:NO];
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {

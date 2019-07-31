@@ -57,6 +57,8 @@
 
 @property (nonatomic, strong) SIAffairInfo *affair;
 
+@property (nonatomic, assign) BOOL killWhenPushed;
+
 #pragma mark - Reachability
 
 - (void)reachabilityHandler:(AFNetworkReachabilityStatus)status;
