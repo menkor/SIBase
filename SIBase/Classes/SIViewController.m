@@ -13,6 +13,7 @@
 #import <SIDefine/SIGlobalEvent.h>
 #import <SIRequestCenter/SIRequestCenter.h>
 #import <SITheme/SIColor.h>
+#import <SIUtils/NSObject+SIKit.h>
 
 @interface SINavigationController ()
 
@@ -20,11 +21,39 @@
 
 @end
 
-@interface SIViewController ()
+@protocol SIControllerViewViewHitTestDelegate <NSObject>
+
+- (UIView *)si_viewHitTest:(CGPoint)point withEvent:(UIEvent *)event;
+
+@end
+
+@interface SIControllerView : UIView
+
+@property (nonatomic, weak) id<SIControllerViewViewHitTestDelegate> hitTestDelegate;
+
+@end
+
+@implementation SIControllerView
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    if ([self.hitTestDelegate respondsToSelector:@selector(si_viewHitTest:withEvent:)]) {
+        UIView *hook = [self.hitTestDelegate si_viewHitTest:point withEvent:event];
+        if (hook) {
+            return hook;
+        }
+    }
+    return [super hitTest:point withEvent:event];
+}
+
+@end
+
+@interface SIViewController () <SIControllerViewViewHitTestDelegate>
 
 @property (nonatomic, strong) SINavigationBar *naviBar;
 
 @property (nonatomic, assign) BOOL si_viewAppeared;
+
+@property (nonatomic, assign) BOOL si_customHitTest;
 
 @end
 
@@ -39,6 +68,18 @@
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;
+}
+
+- (void)loadView {
+    if (_si_customHitTest) {
+        SIControllerView *view = [[SIControllerView alloc] init];
+        view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        view.hitTestDelegate = self;
+        view.autoresizesSubviews = YES;
+        self.view = view;
+    } else {
+        [super loadView];
+    }
 }
 
 - (void)viewDidLoad {
@@ -68,6 +109,9 @@
         [self showNavigationBarLine:NO];
     }
     [self navigationBarHandler];
+    if (self.affair) {
+        [self.affair si_push];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

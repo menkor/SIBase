@@ -68,7 +68,7 @@
     BOOL superidVC = [source isKindOfClass:[SIViewController class]];
     if ([viewController respondsToSelector:@selector(affair)] &&
         [source respondsToSelector:@selector(affair)] &&
-        source.affair) {
+        source.affair && !viewController.affair) {
         [viewController setAffair:source.affair];
     }
     self.next = viewController;
