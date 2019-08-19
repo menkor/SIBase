@@ -64,6 +64,9 @@
     if (self.next) {
         return;
     }
+    if ([self.viewControllers containsObject:viewController]) {
+        return;
+    }
     SIViewController *source = (SIViewController *)self.topViewController;
     BOOL superidVC = [source isKindOfClass:[SIViewController class]];
     if ([viewController respondsToSelector:@selector(affair)] &&
@@ -96,6 +99,13 @@
         source.si_viewAppeared = NO;
     }
     return [super popViewControllerAnimated:animated];
+}
+
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    if (!viewControllerToPresent.transitioningDelegate) {
+        viewControllerToPresent.modalTransitionStyle = UIModalPresentationFullScreen;
+    }
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
 //- (BOOL)shouldAutorotate {

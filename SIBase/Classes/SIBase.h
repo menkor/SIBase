@@ -10,7 +10,6 @@
 #define SIBase_h
 
 #import "SITableViewController.h"
-#import "SIPageViewController.h"
-#import "SINavigationController.h"
+#import "SIViewController.h"
 
 #endif /* SIBase_h */

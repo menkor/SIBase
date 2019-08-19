@@ -278,6 +278,13 @@
     return UIInterfaceOrientationPortrait;
 }
 
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    if (!viewControllerToPresent.transitioningDelegate) {
+        viewControllerToPresent.modalTransitionStyle = UIModalPresentationFullScreen;
+    }
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+
 @end
 
 @implementation SIViewController (SIAlert)

@@ -150,7 +150,7 @@
         transitionCompleted:(BOOL)completed {
     SIViewController *child = pageViewController.viewControllers.firstObject;
     self.currentIndex = [self.subControllerArray indexOfObject:child];
-    [self.segment setSelected:YES segmentAtIndex:self.currentIndex];
+    [_segment setSelected:YES segmentAtIndex:self.currentIndex];
     if ([self respondsToSelector:@selector(didSwitchToPage:)]) {
         [self didSwitchToPage:self.currentIndex];
     }
