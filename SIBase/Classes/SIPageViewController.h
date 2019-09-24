@@ -30,6 +30,8 @@
 
 - (void)presetPages;
 
+- (void)switchToPage:(NSUInteger)nextPage;
+
 @property (nonatomic, assign) BOOL buildinMenu;
 
 @property (nonatomic, assign) UIEdgeInsets insets;

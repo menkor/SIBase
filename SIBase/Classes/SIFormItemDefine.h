@@ -46,11 +46,15 @@ static NSString *const kSIFormItemThemeCorner = @"corner"; //default is `0`
 
 static NSString *const kSIFormItemThemeUnit = @"unit";
 
+static NSString *const kSIFormItemThemeWaiting = @"waiting";
+
+static NSString *const kSIFormItemThemeRightRedDot = @"rightRedDot";
+
 static NSString *const kSIFormItemThemeContentTextAlignment = @"contentTextAlignment"; //default is `NSTextAlignmentRight`
 
 static NSString *const kSIFormItemThemeContentClearButtonMode = @"contentClearButtonMode"; //default is `UITextFieldViewModeNever`
 
-static NSString *const kSIFormItemThemeBackgroundColor = @"backgroundColor"; //default is `UITextFieldViewModeNever`
+static NSString *const kSIFormItemThemeBackgroundColor = @"backgroundColor"; //default is `white`
 
 static NSString *const kSIFormItemThemeValidatorType = @"validatorType"; // default is `SIInputValidatorTypeNone`
 

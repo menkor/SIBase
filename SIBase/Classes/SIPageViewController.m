@@ -190,6 +190,7 @@
             }
             return controller;
         }];
+        self.customChildBlock = nil;
     }
     return _subControllerArray;
 }
