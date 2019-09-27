@@ -280,7 +280,7 @@
 
 - (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
     if (!viewControllerToPresent.transitioningDelegate) {
-        viewControllerToPresent.modalTransitionStyle = UIModalPresentationFullScreen;
+        viewControllerToPresent.modalPresentationStyle = UIModalPresentationFullScreen;
     }
     [super presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
