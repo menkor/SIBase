@@ -88,6 +88,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak, nullable) id some;
 
+@property (nonatomic, strong, nullable) NSMapTable *strongToWeakMap;
+
 #pragma mark - Compare
 
 @property (nonatomic, strong, nullable) NSNumber *id_p;
