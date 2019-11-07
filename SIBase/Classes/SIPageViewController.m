@@ -238,7 +238,7 @@
 - (void)customSegmentItems:(YCSegmentedControl *)segment {
     segment.style = YCSegmentedControlStyleIndicator;
     segment.indicatorHeight = 2;
-    segment.indicatorColor = [SIColor colorWithHex:0x926dea];
+    segment.indicatorColor = SIColor.primaryColor;
     segment.textAttributes = @{NSFontAttributeName: [SIFont mediumSystemFontOfSize:12],
                                NSForegroundColorAttributeName: [SIColor colorWithHex:0x9b9b9b]};
     segment.selectedTextAttributes = @{NSFontAttributeName: [SIFont mediumSystemFontOfSize:12],

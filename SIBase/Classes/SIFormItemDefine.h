@@ -18,6 +18,10 @@ static NSString *const kSIFormItemThemeLast = @"last"; //default is `NO`
 
 static NSString *const kSIFormItemThemeAvatarLeftOffset = @"avatarLeftOffset"; //default is `12`
 
+static NSString *const kSIFormItemThemeAvatarWidth = @"avatarWidth";
+
+static NSString *const kSIFormItemThemeBottomLineLeftOffset = @"bottomLineLeftOffset";
+
 static NSString *const kSIFormItemThemeButtonLeftOffset = @"buttonLeftOffset"; //default is `12`
 
 static NSString *const kSIFormItemThemeTitleTopOffset = @"titleTopOffset"; //default is `18`

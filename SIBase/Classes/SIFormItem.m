@@ -18,7 +18,7 @@
 }
 
 - (NSMapTable *)strongToWeakMap {
-    if (_strongToWeakMap) {
+    if (!_strongToWeakMap) {
         _strongToWeakMap = [NSMapTable strongToWeakObjectsMapTable];
     }
     return _strongToWeakMap;

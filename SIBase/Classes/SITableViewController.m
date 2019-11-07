@@ -403,7 +403,12 @@
             [background mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(view);
             }];
-            break;
+        } else {
+            if (@available(iOS 13.0, *)) {
+                if ([view.subviews.firstObject isKindOfClass:[UITextField class]]) {
+                    view.subviews.firstObject.backgroundColor = [SIColor whiteColor];
+                }
+            };
         }
     }
     //self.definesPresentationContext = YES;
