@@ -150,6 +150,9 @@
 }
 
 - (void)showNavigationBarLine:(BOOL)show {
+    if (![self.parentViewController isKindOfClass:[SINavigationController class]]) {
+        return;
+    }
     UIImageView *line = self.navigationController.navigationBar.subviews.firstObject.subviews.firstObject;
     line.hidden = !show;
 }

@@ -54,8 +54,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [SIColor whiteColor];
-    self.emptyTheme = @{kSIEmptyViewThemeIcon: @"ic_no_content",
-                        kSIEmptyViewThemeTitle: @"无数据"};
+    self.emptyTheme = @{
+        kSIEmptyViewThemeTitle: @"暂无内容",
+    };
     //data source
     _section = _section ?: @[kSISingleSectionKey];
     _dataSource = [@{} mutableCopy];
@@ -325,7 +326,7 @@
     [super setCustomNaviBar:customNaviBar];
     if (customNaviBar) {
         [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.view).offset([[UIApplication sharedApplication] statusBarFrame].size.height + 44);
+            make.top.mas_equalTo(self.view).offset(kStatusBarHeight + kNavBarHeight);
         }];
     }
 }

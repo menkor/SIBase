@@ -13,6 +13,7 @@
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
 #import <SIUIKit/SIAlertView.h>
+#import <SIUIKit/SIEmptyView.h>
 #import <SIUIKit/SIMessageBox.h>
 #import <SIUIKit/SINavigationBar.h>
 #import <UIKit/UIKit.h>
@@ -37,11 +38,15 @@
 
 @interface SIViewController : UIViewController <SIViewController>
 
+#pragma mark - Reload
+
 @property (nonatomic, assign) BOOL reloadWhenAppear;
 
 @property (nonatomic, assign) BOOL reloadOnce;
 
 @property (nonatomic, assign) BOOL noReloadOnce;
+
+#pragma mark - NavigationBar
 
 @property (nonatomic, assign) BOOL hideNavigationBarLine;
 
@@ -49,17 +54,21 @@
 
 @property (nonatomic, assign) BOOL hideNavigationBar;
 
-@property (nonatomic, assign) BOOL autoShowNetworkActivity;
+@property (nonatomic, readonly) SINavigationBar *naviBar;
+
+#pragma mark - Appeared
 
 @property (nonatomic, readonly) BOOL si_viewAppeared;
 
-@property (nonatomic, readonly) SINavigationBar *naviBar;
+@property (nonatomic, assign) BOOL killWhenPushed;
+
+#pragma mark - affair
 
 @property (nonatomic, strong) SIAffairInfo *affair;
 
-@property (nonatomic, assign) BOOL killWhenPushed;
-
 #pragma mark - Reachability
+
+@property (nonatomic, assign) BOOL autoShowNetworkActivity;
 
 - (void)reachabilityHandler:(AFNetworkReachabilityStatus)status;
 
