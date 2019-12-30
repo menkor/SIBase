@@ -98,7 +98,9 @@
 
 - (void)navigationBarHandler {
     if ([self.parentViewController isKindOfClass:[UINavigationController class]]) {
-        self.navigationController.navigationBarHidden = _customNaviBar || _hideNavigationBar;
+        if (self.navigationController.topViewController == self) {
+            self.navigationController.navigationBarHidden = _customNaviBar || _hideNavigationBar;
+        }
     }
 }
 
@@ -233,7 +235,6 @@
         [_naviBar mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(height);
         }];
-        _naviBar.topBaseline = safeAreaInsets.top > 0 ? (safeAreaInsets.top) : statusHeight;
     }
 }
 
@@ -244,9 +245,12 @@
         _naviBar.owner = self;
         [_naviBar setTheme:SINavigationThemeClear];
         [self.view addSubview:_naviBar];
+        UIEdgeInsets safeAreaInsets = [self si_safeAreaInset];
+        CGFloat height = 44.0;
+        height += IS_IPHONE_X() ? kStatusBarHeight : 0;
         [_naviBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.mas_equalTo(self.view);
-            make.height.mas_equalTo(44);
+            make.height.mas_equalTo(height);
         }];
         NSArray *viewControllers = self.navigationController.viewControllers;
         if (viewControllers.count > 1 && viewControllers.lastObject == self) {
