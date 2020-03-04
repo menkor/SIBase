@@ -218,26 +218,6 @@
     }
 }
 
-- (UIEdgeInsets)si_safeAreaInset {
-    if (@available(iOS 11.0, *)) {
-        return self.view.safeAreaInsets;
-    }
-    return UIEdgeInsetsZero;
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    if (_customNaviBar) {
-        UIEdgeInsets safeAreaInsets = [self si_safeAreaInset];
-        CGFloat height = 44.0;
-        CGFloat statusHeight = self.prefersStatusBarHidden ? 0 : 20;
-        height += safeAreaInsets.top > 0 ? safeAreaInsets.top : statusHeight;
-        [_naviBar mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(height);
-        }];
-    }
-}
-
 - (void)setCustomNaviBar:(BOOL)customNaviBar {
     _customNaviBar = customNaviBar;
     if (_customNaviBar && !_naviBar) {
@@ -245,9 +225,8 @@
         _naviBar.owner = self;
         [_naviBar setTheme:SINavigationThemeClear];
         [self.view addSubview:_naviBar];
-        UIEdgeInsets safeAreaInsets = [self si_safeAreaInset];
         CGFloat height = 44.0;
-        height += IS_IPHONE_X() ? kStatusBarHeight : 0;
+        height += IS_IPHONE_X() ? kStatusBarHeight : 20;
         [_naviBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.mas_equalTo(self.view);
             make.height.mas_equalTo(height);
@@ -372,6 +351,13 @@
         [self.view endEditing:YES];
     }
     [SIMessageBox showError:error];
+}
+
+- (void)showInfo:(NSString *)info {
+    if (self.viewLoaded) {
+        [self.view endEditing:YES];
+    }
+    [SIMessageBox showInfo:info];
 }
 
 - (void)showWaiting:(NSString *)hint {

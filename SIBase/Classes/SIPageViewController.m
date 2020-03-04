@@ -185,6 +185,7 @@
         _subControllerArray = [self.subControllerClassArray yc_mapWithBlock:^id(NSUInteger idx, Class class) {
             SIViewController *controller = [class new];
             controller.affair = self.affair;
+            controller.showExtraFooter = self.showExtraFooter;
             if (self.customChildBlock) {
                 self.customChildBlock(idx, controller);
             }

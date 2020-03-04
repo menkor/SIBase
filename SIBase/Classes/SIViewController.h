@@ -56,6 +56,10 @@
 
 @property (nonatomic, readonly) SINavigationBar *naviBar;
 
+#pragma mark - TabBar
+
+@property (nonatomic, assign) BOOL alwaysShowTabBar;
+
 #pragma mark - Appeared
 
 @property (nonatomic, readonly) BOOL si_viewAppeared;
@@ -75,6 +79,8 @@
 #pragma mark - Collector
 
 @property (nonatomic, copy) NSString *pageUri;
+
+@property (nonatomic, assign) BOOL showExtraFooter;
 
 @end
 
@@ -119,6 +125,8 @@
 - (void)showMessage:(NSString *)message title:(NSString *)title;
 
 - (void)showError:(NSString *)error;
+
+- (void)showInfo:(NSString *)info;
 
 - (void)showWaiting:(NSString *)hint;
 

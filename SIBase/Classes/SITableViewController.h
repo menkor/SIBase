@@ -29,6 +29,8 @@
 
 - (void)loadMoreData;
 
+@property (nonatomic, assign) BOOL autoLoadMore;
+
 #pragma mark - Data Source
 
 @property (nonatomic, strong) NSArray /* <NSString *> or <NSNumber *> */ *section;

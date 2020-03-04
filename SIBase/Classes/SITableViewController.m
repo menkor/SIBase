@@ -8,6 +8,8 @@
 
 #import "SITableViewController.h"
 #import <Masonry/Masonry.h>
+#import <ReactiveObjC/NSObject+RACPropertySubscribing.h>
+#import <ReactiveObjC/RACSignal.h>
 #import <SIDefine/SIDataBindDefine.h>
 #import <SIDefine/SIGlobalEvent.h>
 #import <SITheme/SIColor.h>
@@ -23,6 +25,10 @@
 @property (nonatomic, assign) UITableViewStyle style;
 
 @property (nonatomic, strong) SIEmptyView *emptyView;
+
+@property (nonatomic, strong) SIAutoRefreshFooter *autoRefreshFooter;
+
+@property (nonatomic, assign) BOOL p_autoRefreshing;
 
 @property (nonatomic, strong) YCPollingEntity *polling;
 
@@ -68,6 +74,10 @@
     SIRefreshHeader *header = [SIRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(_refreshAction)];
     self.tableView.mj_header = header;
     self.pollingDuration = 0.3;
+    if (self.showExtraFooter) {
+        UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 49)];
+        self.tableView.tableFooterView = footer;
+    }
 }
 
 - (void)_refreshAction {
@@ -130,6 +140,45 @@
     }
 }
 
+- (void)setSection:(NSArray *)section {
+    _section = section;
+    self.p_autoRefreshing = NO;
+}
+
+- (void)setAutoLoadMore:(BOOL)autoLoadMore {
+    _autoLoadMore = autoLoadMore;
+    self.p_autoRefreshing = NO;
+    if (autoLoadMore) {
+        if (self.showExtraFooter) {
+            self.autoRefreshFooter.frame = CGRectMake(0, 0, ScreenWidth, 44 + 49);
+        } else {
+            self.autoRefreshFooter.frame = CGRectMake(0, 0, ScreenWidth, 44);
+        }
+        self.tableView.tableFooterView = self.autoRefreshFooter;
+    } else {
+        self.showExtraFooter = self.showExtraFooter;
+    }
+}
+
+- (void)_observeTableOffset {
+    weakfy(self);
+    [RACObserve(self.tableView, contentOffset) subscribeNext:^(id _Nullable x) {
+        strongfy(self);
+        if (!self.autoLoadMore) {
+            return;
+        }
+        CGPoint offset = [x CGPointValue];
+        CGFloat total = self.tableView.contentSize.height - CGRectGetHeight(self.tableView.frame);
+        if (total < 0) {
+            return;
+        }
+        if (offset.y >= total && !self.p_autoRefreshing && self.autoLoadMore) {
+            self.p_autoRefreshing = YES;
+            [self loadMoreData];
+        }
+    }];
+}
+
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {
     if (!indexPath) {
         return nil;
@@ -158,6 +207,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     SIRefreshHeader *header = (SIRefreshHeader *)self.tableView.mj_header;
     [header finish];
+    self.p_autoRefreshing = NO;
     if (!self.section) {
         tableView.backgroundView = self.emptyView;
         [self.emptyView reloadWithData:@(SIEmptyViewTypeNoData)];
@@ -204,6 +254,9 @@
         } else {
             identifier = NSStringFromClass(self.cellClass);
         }
+    }
+    if (!data) {
+        return [UITableViewCell new];
     }
     UITableViewCell<SIDataBindProtocol> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     //NSParameterAssert(cell);
@@ -336,6 +389,16 @@
     _emptyView.theme = [emptyTheme copy];
 }
 
+- (void)setShowExtraFooter:(BOOL)showExtraFooter {
+    [super setShowExtraFooter:showExtraFooter];
+    if (showExtraFooter) {
+        UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 49)];
+        self.tableView.tableFooterView = footer;
+    } else {
+        self.tableView.tableFooterView = nil;
+    }
+}
+
 #pragma mark - Lazy Load
 
 - (UITableView *)tableView {
@@ -383,6 +446,14 @@
         _polling = [YCPollingEntity pollingEntityWithTimeInterval:self.pollingDuration max:self.pollingDuration];
     }
     return _polling;
+}
+
+- (SIAutoRefreshFooter *)autoRefreshFooter {
+    if (!_autoRefreshFooter) {
+        _autoRefreshFooter = [[SIAutoRefreshFooter alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        [self _observeTableOffset];
+    }
+    return _autoRefreshFooter;
 }
 
 @end
