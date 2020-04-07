@@ -19,8 +19,6 @@
 
 @interface SINavigationController ()
 
-@property (nonatomic, weak) SIViewController *next;
-
 @property (nonatomic, assign) BOOL si_isBeingPresented;
 
 @end
@@ -61,9 +59,6 @@
 }
 
 - (void)pushViewController:(SIViewController *)viewController animated:(BOOL)animated {
-    if (self.next) {
-        return;
-    }
     if ([self.viewControllers containsObject:viewController]) {
         return;
     }
@@ -74,7 +69,6 @@
         source.affair && !viewController.affair) {
         [viewController setAffair:source.affair];
     }
-    self.next = viewController;
     if (superidVC) {
         source.si_viewAppeared = NO;
     }
@@ -88,9 +82,6 @@
     } else {
         [super pushViewController:viewController animated:animated];
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.next = nil;
-    });
 }
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated {
