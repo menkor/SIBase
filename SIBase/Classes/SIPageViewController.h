@@ -20,6 +20,8 @@
 
 @interface SIPageViewController : SIViewController <SIBasePageViewDelegate>
 
+@property (nonatomic, assign) NSInteger defaultPage;
+
 @property (nonatomic, assign, readonly) NSInteger currentPage;
 
 @property (nonatomic, strong) NSArray<NSString *> *pageTitleArray;

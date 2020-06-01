@@ -208,6 +208,11 @@
 
 #pragma mark Did Set
 
+- (void)setAffair:(SIAffairInfo *)affair {
+    _affair = affair;
+    [affair si_push];
+}
+
 - (void)setReloadWhenAppear:(BOOL)reloadWhenAppear {
     if (reloadWhenAppear == _reloadWhenAppear) {
         return;

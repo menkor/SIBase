@@ -39,6 +39,7 @@
     [super viewDidLoad];
     _scrollEnabled = YES;
     self.buildinMenu = YES;
+    _defaultPage = 0;
     [self presetPages];
     _currentIndex = -1;
     [self addChildViewController:self.pageViewController];
@@ -58,7 +59,7 @@
         [self.view bringSubviewToFront:self.segment];
     } else {
         [self.pageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(self.view);
+            make.edges.mas_equalTo(self.view).insets(self.insets);
         }];
     }
     self.hideNavigationBarLine = NO;
@@ -74,7 +75,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (self.currentIndex == -1) {
-        [self switchToPage:0];
+        [self switchToPage:_defaultPage];
         [self.subControllerArray yc_eachIndex:^(NSUInteger idx, __kindof SIViewController *obj) {
             obj.si_viewAppeared = idx == 0;
         }];
