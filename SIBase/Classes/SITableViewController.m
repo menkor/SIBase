@@ -86,9 +86,9 @@
 
 - (void)reachabilityHandler:(AFNetworkReachabilityStatus)status {
     if (status == AFNetworkReachabilityStatusNotReachable) {
-        if (self->_emptyView) {
-            [self.emptyView reloadWithData:@(SIEmptyViewTypeNoNetWork)];
-        }
+        //if (self->_emptyView) {
+        //    [self.emptyView reloadWithData:@(SIEmptyViewTypeNoNetWork)];
+        //}
     } else {
         [self loadData];
     }

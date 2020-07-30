@@ -9,8 +9,8 @@
 #ifndef SIFormItemDefine_h
 #define SIFormItemDefine_h
 
-@import UIKit;
-@import Foundation;
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 static NSString *const kSIFormItemThemeStar = @"star"; //default is `NO`
 
