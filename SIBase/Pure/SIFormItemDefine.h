@@ -9,11 +9,18 @@
 #ifndef SIFormItemDefine_h
 #define SIFormItemDefine_h
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 static NSString *const kSIFormItemThemeStar = @"star"; //default is `NO`
 
 static NSString *const kSIFormItemThemeLast = @"last"; //default is `NO`
 
 static NSString *const kSIFormItemThemeAvatarLeftOffset = @"avatarLeftOffset"; //default is `12`
+
+static NSString *const kSIFormItemThemeAvatarWidth = @"avatarWidth";
+
+static NSString *const kSIFormItemThemeBottomLineLeftOffset = @"bottomLineLeftOffset";
 
 static NSString *const kSIFormItemThemeButtonLeftOffset = @"buttonLeftOffset"; //default is `12`
 
@@ -43,8 +50,18 @@ static NSString *const kSIFormItemThemeCorner = @"corner"; //default is `0`
 
 static NSString *const kSIFormItemThemeUnit = @"unit";
 
+static NSString *const kSIFormItemThemeWaiting = @"waiting";
+
+static NSString *const kSIFormItemThemeRightRedDot = @"rightRedDot";
+
 static NSString *const kSIFormItemThemeContentTextAlignment = @"contentTextAlignment"; //default is `NSTextAlignmentRight`
 
 static NSString *const kSIFormItemThemeContentClearButtonMode = @"contentClearButtonMode"; //default is `UITextFieldViewModeNever`
+
+static NSString *const kSIFormItemThemeBackgroundColor = @"backgroundColor"; //default is `white`
+
+static NSString *const kSIFormItemThemeValidatorType = @"validatorType"; // default is `SIInputValidatorTypeNone`
+
+static NSString *const kSIFormItemThemeValidatorRegex = @"validatorRegex";
 
 #endif /* SIFormItemDefine_h */

@@ -8,8 +8,8 @@
 
 #import "SIFormItemDefine.h"
 #import <Foundation/Foundation.h>
-#import <SIDefine/SIDataBindDefine.h>
 
+@class RACCommand;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SIFormItem : NSObject <SIFormItemProtocol>
@@ -17,6 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat height;
 
 @property (nonatomic, copy) NSString *identifier;
+
+@property (nonatomic, assign) CGFloat width;
+
+#pragma mark - Index
+
+@property (nonatomic, assign) NSInteger section;
+
+@property (nonatomic, assign) NSInteger row;
 
 #pragma mark - UI
 
@@ -26,9 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nullable) NSString *content;
 
-@property (nonatomic, copy, nullable) NSString *minValue __deprecated;
+@property (nonatomic, copy, nullable) NSString *minValue; // __deprecated;
 
-@property (nonatomic, copy, nullable) NSString *maxValue __deprecated;
+@property (nonatomic, copy, nullable) NSString *maxValue; // __deprecated;
 
 @property (nonatomic, copy, nullable) NSString *avatar;
 
@@ -36,16 +44,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSNumber *number;
 
-@property (nonatomic, strong, nullable) NSNumber *min __deprecated;
+@property (nonatomic, strong, nullable) NSNumber *min; // __deprecated;
 
-@property (nonatomic, strong, nullable) NSNumber *max __deprecated;
+@property (nonatomic, strong, nullable) NSNumber *max; // __deprecated;
 
 @property (nonatomic, strong, nullable) id data;
 
 @property (nonatomic, assign) BOOL hideAvatar;
 
 // 用于时间选择的Cell，清空已选时间，及类似情况
-@property (nonatomic, assign) BOOL dateCleanBtn __deprecated;
+@property (nonatomic, assign) BOOL dateCleanBtn; // __deprecated;
 
 #pragma mark - Status
 
@@ -75,13 +83,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nullable) NSDictionary *theme;
 
-#pragma mark - Cell
+#pragma mark - Some
 
 @property (nonatomic, weak, nullable) id some;
+
+@property (nonatomic, strong, nullable) NSMapTable *strongToWeakMap;
 
 #pragma mark - Compare
 
 @property (nonatomic, strong, nullable) NSNumber *id_p;
+
+#pragma mark - RACCommand
+
+@property (nonatomic, strong, nullable) RACCommand *command;
 
 @end
 NS_ASSUME_NONNULL_END

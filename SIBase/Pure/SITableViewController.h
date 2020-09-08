@@ -29,6 +29,8 @@
 
 - (void)loadMoreData;
 
+@property (nonatomic, assign) BOOL autoLoadMore;
+
 #pragma mark - Data Source
 
 @property (nonatomic, strong) NSArray /* <NSString *> or <NSNumber *> */ *section;
@@ -62,13 +64,17 @@
 
 - (void)reloadIndexPath:(NSIndexPath *)indexPath;
 
+- (void)silentReloadIndexPath:(NSIndexPath *)indexPath;
+
 - (void)reloadIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation;
 
 - (void)removeIndexPath:(NSIndexPath *)indexPath;
 
+- (void)reloadDataAndKeepOffset;
+
 #pragma mark - Search
 
-@property (nonatomic, copy, readonly) NSString *keyword;
+@property (nonatomic, copy) NSString *keyword;
 
 @end
 

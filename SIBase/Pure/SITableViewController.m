@@ -8,6 +8,8 @@
 
 #import "SITableViewController.h"
 #import <Masonry/Masonry.h>
+#import <ReactiveObjC/NSObject+RACPropertySubscribing.h>
+#import <ReactiveObjC/RACSignal.h>
 #import <SIDefine/SIDataBindDefine.h>
 #import <SIDefine/SIGlobalEvent.h>
 #import <SITheme/SIColor.h>
@@ -24,19 +26,17 @@
 
 @property (nonatomic, strong) SIEmptyView *emptyView;
 
+@property (nonatomic, strong) SIAutoRefreshFooter *autoRefreshFooter;
+
+@property (nonatomic, assign) BOOL p_autoRefreshing;
+
 @property (nonatomic, strong) YCPollingEntity *polling;
 
 @property (nonatomic, assign) CGFloat pollingDuration;
 
-@property (nonatomic, copy) NSString *keyword;
-
 @end
 
-@implementation SITableViewController {
-    BOOL _emptyFlag;
-    BOOL _footerFlag;
-    BOOL _registerFlag;
-}
+@implementation SITableViewController
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super init];
@@ -60,8 +60,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [SIColor whiteColor];
-    self.emptyTheme = @{kSIEmptyViewThemeIcon: @"ic_no_content",
-                        kSIEmptyViewThemeTitle: @"无数据"};
+    self.emptyTheme = @{
+        kSIEmptyViewThemeTitle: @"暂无内容",
+    };
     //data source
     _section = _section ?: @[kSISingleSectionKey];
     _dataSource = [@{} mutableCopy];
@@ -73,6 +74,10 @@
     SIRefreshHeader *header = [SIRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(_refreshAction)];
     self.tableView.mj_header = header;
     self.pollingDuration = 0.3;
+    if (self.showExtraFooter) {
+        UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 49)];
+        self.tableView.tableFooterView = footer;
+    }
 }
 
 - (void)_refreshAction {
@@ -81,9 +86,9 @@
 
 - (void)reachabilityHandler:(AFNetworkReachabilityStatus)status {
     if (status == AFNetworkReachabilityStatusNotReachable) {
-        if (self->_emptyView) {
-            [self.emptyView reloadWithData:@(SIEmptyViewTypeNoNetWork)];
-        }
+        //if (self->_emptyView) {
+        //    [self.emptyView reloadWithData:@(SIEmptyViewTypeNoNetWork)];
+        //}
     } else {
         [self loadData];
     }
@@ -92,9 +97,10 @@
 #pragma mark - Cell
 
 - (void)setCellClass:(Class)cellClass {
-    _registerFlag = _tableView != nil;
     _cellClass = cellClass;
-    [_tableView registerClass:cellClass forCellReuseIdentifier:NSStringFromClass(cellClass)];
+    if (cellClass) {
+        [_tableView registerClass:cellClass forCellReuseIdentifier:NSStringFromClass(cellClass)];
+    }
 }
 
 - (void)setCellClassArray:(NSArray<Class> *)cellClassArray {
@@ -134,6 +140,45 @@
     }
 }
 
+- (void)setSection:(NSArray *)section {
+    _section = section;
+    self.p_autoRefreshing = NO;
+}
+
+- (void)setAutoLoadMore:(BOOL)autoLoadMore {
+    _autoLoadMore = autoLoadMore;
+    self.p_autoRefreshing = NO;
+    if (autoLoadMore) {
+        if (self.showExtraFooter) {
+            self.autoRefreshFooter.frame = CGRectMake(0, 0, ScreenWidth, 44 + 49);
+        } else {
+            self.autoRefreshFooter.frame = CGRectMake(0, 0, ScreenWidth, 44);
+        }
+        self.tableView.tableFooterView = self.autoRefreshFooter;
+    } else {
+        self.showExtraFooter = self.showExtraFooter;
+    }
+}
+
+- (void)_observeTableOffset {
+    weakfy(self);
+    [RACObserve(self.tableView, contentOffset) subscribeNext:^(id _Nullable x) {
+        strongfy(self);
+        if (!self.autoLoadMore) {
+            return;
+        }
+        CGPoint offset = [x CGPointValue];
+        CGFloat total = self.tableView.contentSize.height - CGRectGetHeight(self.tableView.frame);
+        if (total < 0) {
+            return;
+        }
+        if (offset.y >= total && !self.p_autoRefreshing && self.autoLoadMore) {
+            self.p_autoRefreshing = YES;
+            [self loadMoreData];
+        }
+    }];
+}
+
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {
     if (!indexPath) {
         return nil;
@@ -162,6 +207,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     SIRefreshHeader *header = (SIRefreshHeader *)self.tableView.mj_header;
     [header finish];
+    self.p_autoRefreshing = NO;
     if (!self.section) {
         tableView.backgroundView = self.emptyView;
         [self.emptyView reloadWithData:@(SIEmptyViewTypeNoData)];
@@ -209,12 +255,16 @@
             identifier = NSStringFromClass(self.cellClass);
         }
     }
+    if (!data) {
+        return [UITableViewCell new];
+    }
     UITableViewCell<SIDataBindProtocol> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     //NSParameterAssert(cell);
     return cell ?: [UITableViewCell new];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell<SIDataBindProtocol> *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<SIFormItemProtocol> data = [self objectAtIndexPath:indexPath];
     if ([cell respondsToSelector:@selector(actionBlock)]) {
         __weak __typeof__(self) weak_self = self;
         [cell setActionBlock:^(id action) {
@@ -225,11 +275,17 @@
                 });
                 return;
             }
+            if ([data respondsToSelector:@selector(command)]) {
+                id<SIFormItemCommandProtocol> command = data.command;
+                if ([command respondsToSelector:@selector(execute:)]) {
+                    [command execute:action];
+                    return;
+                }
+            }
             [weak_self action:action atIndexPath:indexPath];
         }];
     }
     if ([cell respondsToSelector:@selector(reloadWithData:)]) {
-        id<SIFormItemProtocol> data = [self objectAtIndexPath:indexPath];
         [cell reloadWithData:data];
         if ([cell respondsToSelector:@selector(bottomLine)]) {
             UIView *line = [cell valueForKey:@"_bottomLine"];
@@ -245,20 +301,28 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<SIFormItemProtocol> data = [self objectAtIndexPath:indexPath];
+    if ([data respondsToSelector:@selector(command)]) {
+        id<SIFormItemCommandProtocol> command = data.command;
+        if ([command respondsToSelector:@selector(execute:)]) {
+            [command execute:nil];
+            return;
+        }
+    }
     [self action:nil atIndexPath:indexPath];
 }
 
 - (void)reloadIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self reloadIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)silentReloadIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell<SIDataBindProtocol> *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell reloadWithData:[self objectAtIndexPath:indexPath]];
 }
 
 - (void)reloadIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation {
-    if (animation == UITableViewRowAnimationNone) {
-        UITableViewCell<SIDataBindProtocol> *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell reloadWithData:[self objectAtIndexPath:indexPath]];
-        return;
-    }
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:animation];
 }
 
 - (void)removeIndexPath:(NSIndexPath *)indexPath {
@@ -280,8 +344,19 @@
         [mutableCellArray removeObjectAtIndex:indexPath.row];
         self.dataSource[key] = mutableCellArray;
     }
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView reloadData];
+}
+
+- (void)reloadDataAndKeepOffset {
+    [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
+    CGSize beforeContentSize = self.tableView.contentSize;
+    [self.tableView reloadData];
+    [self.tableView layoutIfNeeded];
+    CGSize afterContentSize = self.tableView.contentSize;
+    CGPoint contentOffset = self.tableView.contentOffset;
+    CGPoint newOffset = CGPointMake(contentOffset.x + (afterContentSize.width - beforeContentSize.width), contentOffset.y + (afterContentSize.height - beforeContentSize.height));
+    [self.tableView setContentOffset:newOffset animated:NO];
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
@@ -304,7 +379,7 @@
     [super setCustomNaviBar:customNaviBar];
     if (customNaviBar) {
         [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.view).offset([[UIApplication sharedApplication] statusBarFrame].size.height + 44);
+            make.top.mas_equalTo(self.view).offset(kStatusBarHeight + kNavBarHeight);
         }];
     }
 }
@@ -314,9 +389,22 @@
     _emptyView.theme = [emptyTheme copy];
 }
 
+- (void)setShowExtraFooter:(BOOL)showExtraFooter {
+    [super setShowExtraFooter:showExtraFooter];
+    if (showExtraFooter) {
+        UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 49)];
+        self.tableView.tableFooterView = footer;
+    } else {
+        self.tableView.tableFooterView = nil;
+    }
+}
+
 #pragma mark - Lazy Load
 
 - (UITableView *)tableView {
+    if (!self.viewLoaded) {
+        return nil;
+    }
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.style];
         _tableView.dataSource = self;
@@ -331,12 +419,10 @@
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(self.view);
         }];
-        if (!_registerFlag) {
-            if (self.cellClassArray) {
-                self.cellClassArray = self.cellClassArray;
-            } else if (self.cellClass) {
-                self.cellClass = self.cellClass;
-            }
+        if (self.cellClassArray) {
+            self.cellClassArray = self.cellClassArray;
+        } else if (self.cellClass) {
+            self.cellClass = self.cellClass;
         }
     }
     return _tableView;
@@ -362,6 +448,14 @@
     return _polling;
 }
 
+- (SIAutoRefreshFooter *)autoRefreshFooter {
+    if (!_autoRefreshFooter) {
+        _autoRefreshFooter = [[SIAutoRefreshFooter alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+        [self _observeTableOffset];
+    }
+    return _autoRefreshFooter;
+}
+
 @end
 
 @implementation SIViewController (SISearch)
@@ -381,11 +475,19 @@
             [background mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(view);
             }];
-            break;
+        } else {
+            if (@available(iOS 13.0, *)) {
+                if ([view.subviews.firstObject isKindOfClass:[UITextField class]]) {
+                    view.subviews.firstObject.backgroundColor = [SIColor whiteColor];
+                }
+            };
         }
     }
     //self.definesPresentationContext = YES;
     searchController.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 36);
+    if ([self isKindOfClass:[SITableViewController class]]) {
+        ((SITableViewController *)self).tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    }
     [searchController.searchBar sizeToFit];
     searchController.delegate = (id)self;
     searchController.searchBar.delegate = (id)self;

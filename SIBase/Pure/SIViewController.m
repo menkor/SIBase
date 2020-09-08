@@ -7,16 +7,53 @@
 //
 
 #import "SIViewController.h"
+#import "SINavigationController.h"
 #import <Masonry/Masonry.h>
+#import <SICollector/SICollector.h>
+#import <SIDefine/SIGlobalEvent.h>
+#import <SIRequestCenter/SIRequestCenter.h>
 #import <SITheme/SIColor.h>
+#import <SIUtils/NSObject+SIKit.h>
 
-@interface SIViewController ()
+@interface SINavigationController ()
+
+@property (nonatomic, assign) BOOL si_isBeingPresented;
+
+@end
+
+@protocol SIControllerViewViewHitTestDelegate <NSObject>
+
+- (UIView *)si_viewHitTest:(CGPoint)point withEvent:(UIEvent *)event;
+
+@end
+
+@interface SIControllerView : UIView
+
+@property (nonatomic, weak) id<SIControllerViewViewHitTestDelegate> hitTestDelegate;
+
+@end
+
+@implementation SIControllerView
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    if ([self.hitTestDelegate respondsToSelector:@selector(si_viewHitTest:withEvent:)]) {
+        UIView *hook = [self.hitTestDelegate si_viewHitTest:point withEvent:event];
+        if (hook) {
+            return hook;
+        }
+    }
+    return [super hitTest:point withEvent:event];
+}
+
+@end
+
+@interface SIViewController () <SIControllerViewViewHitTestDelegate>
 
 @property (nonatomic, strong) SINavigationBar *naviBar;
 
 @property (nonatomic, assign) BOOL si_viewAppeared;
 
-@property (nonatomic, assign) BOOL startedNetworkActivity;
+@property (nonatomic, assign) BOOL si_customHitTest;
 
 @end
 
@@ -26,37 +63,98 @@
     self = [super init];
     if (self) {
         _reloadWhenAppear = YES;
+        _noReloadOnce = NO;
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;
 }
 
+- (void)loadView {
+    if (_si_customHitTest) {
+        SIControllerView *view = [[SIControllerView alloc] init];
+        view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        view.hitTestDelegate = self;
+        view.autoresizesSubviews = YES;
+        self.view = view;
+    } else {
+        [super loadView];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.si_viewAppeared = YES;
-    self.navigationController.navigationBarHidden = NO;
+    [self navigationBarHandler];
     self.navigationController.navigationBar.translucent = YES;
     [self defaultUI];
+    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager manager];
+    __weak __typeof__(self) weak_self = self;
+    [reachabilityManager startMonitoring];
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        [weak_self reachabilityHandler:status];
+    }];
     // Do any additional setup after loading the view.
+}
+
+- (void)navigationBarHandler {
+    if ([self.parentViewController isKindOfClass:[UINavigationController class]]) {
+        if (self.navigationController.topViewController == self) {
+            self.navigationController.navigationBarHidden = _customNaviBar || _hideNavigationBar;
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.si_viewAppeared = YES;
-
-    if (_reloadWhenAppear) {
-        [self loadData];
-    }
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:NO];
     }
-    if (_customNaviBar) {
-        self.navigationController.navigationBarHidden = YES;
+    [self navigationBarHandler];
+    if (self.affair) {
+        [self.affair si_push];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (_noReloadOnce) {
+        _noReloadOnce = NO;
+    } else {
+        if (_reloadWhenAppear || _reloadOnce) {
+            [self loadData];
+            _reloadOnce = NO;
+        }
+    }
+    [self eventTracking];
+}
+
+- (void)setAutoShowNetworkActivity:(BOOL)autoShowNetworkActivity {
+    _autoShowNetworkActivity = autoShowNetworkActivity;
+    if (_autoShowNetworkActivity) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_requestStatus:) name:kSIRequestStatusMessage object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kSIRequestStatusMessage object:nil];
+    }
+}
+
+- (void)_requestStatus:(NSNotification *)sender {
+    if (!_si_viewAppeared) {
+        return;
+    }
+    NSDictionary *userInfo = [sender object];
+    SIRequestStatus status = [userInfo[@"status"] integerValue];
+    if (status == SIRequestStatusBegin) {
+        [SIMessageBox showWaiting:nil hideAfterDelay:5];
+    } else {
+        [SIMessageBox hideWaiting];
     }
 }
 
 - (void)showNavigationBarLine:(BOOL)show {
+    if (![self.parentViewController isKindOfClass:[SINavigationController class]]) {
+        return;
+    }
     UIImageView *line = self.navigationController.navigationBar.subviews.firstObject.subviews.firstObject;
     line.hidden = !show;
 }
@@ -68,9 +166,9 @@
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:YES];
     }
-    if (_customNaviBar) {
-        self.navigationController.navigationBarHidden = NO;
-    }
+}
+
+- (void)reachabilityHandler:(AFNetworkReachabilityStatus)status {
 }
 
 - (void)loadData {
@@ -78,6 +176,10 @@
 
 - (void)defaultUI {
     self.view.backgroundColor = [SIColor whiteColor];
+    if (self.navigationController.isBeingPresented) {
+        self.navigationItem.leftBarButtonItem = [self barItemWithIcon:@"ic_back_chevron" selector:@selector(goBack)];
+        return;
+    }
     NSArray *viewControllers = self.navigationController.viewControllers;
     if (viewControllers.count > 1 && viewControllers.lastObject == self) {
         self.navigationItem.hidesBackButton = YES;
@@ -88,7 +190,12 @@
 }
 
 - (void)goBack {
-    [self.navigationController popViewControllerAnimated:YES];
+    SINavigationController *navi = self.navigationController;
+    if (navi.si_isBeingPresented && navi.viewControllers.count == 1) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+    [navi popViewControllerAnimated:YES];
 }
 
 - (void)backward:(NSUInteger)level {
@@ -100,6 +207,11 @@
 }
 
 #pragma mark Did Set
+
+- (void)setAffair:(SIAffairInfo *)affair {
+    _affair = affair;
+    [affair si_push];
+}
 
 - (void)setReloadWhenAppear:(BOOL)reloadWhenAppear {
     if (reloadWhenAppear == _reloadWhenAppear) {
@@ -118,9 +230,11 @@
         _naviBar.owner = self;
         [_naviBar setTheme:SINavigationThemeClear];
         [self.view addSubview:_naviBar];
+        CGFloat height = 44.0;
+        height += IS_IPHONE_X() ? kStatusBarHeight : 20;
         [_naviBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.right.mas_equalTo(self.view);
-            make.height.mas_equalTo([[UIApplication sharedApplication] statusBarFrame].size.height + 44);
+            make.left.right.top.mas_equalTo(self.view);
+            make.height.mas_equalTo(height);
         }];
         NSArray *viewControllers = self.navigationController.viewControllers;
         if (viewControllers.count > 1 && viewControllers.lastObject == self) {
@@ -140,6 +254,26 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+// Which screen directions are supported.
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    if (!viewControllerToPresent.transitioningDelegate) {
+        viewControllerToPresent.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
 @end
@@ -211,17 +345,30 @@
 }
 
 - (void)showMessage:(NSString *)message {
-    [self.view endEditing:YES];
+    if (self.viewLoaded) {
+        [self.view endEditing:YES];
+    }
     [SIMessageBox showMessage:message];
 }
 
 - (void)showError:(NSString *)error {
-    [self.view endEditing:YES];
+    if (self.viewLoaded) {
+        [self.view endEditing:YES];
+    }
     [SIMessageBox showError:error];
 }
 
+- (void)showInfo:(NSString *)info {
+    if (self.viewLoaded) {
+        [self.view endEditing:YES];
+    }
+    [SIMessageBox showInfo:info];
+}
+
 - (void)showWaiting:(NSString *)hint {
-    [self.view endEditing:YES];
+    if (self.viewLoaded) {
+        [self.view endEditing:YES];
+    }
     [SIMessageBox showWaiting:hint];
 }
 

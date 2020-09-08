@@ -5,7 +5,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'SIBase_Example' do
-  pod 'SIBase', :path => '../'
+  pod 'SIBase/Pure', :path => '../'
 
   target 'SIBase_Tests' do
     inherit! :search_paths

@@ -8,7 +8,12 @@
 
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <SIDefine/SIGlobalMacro.h>
+#import <SIRequestCenter/SIRequestCenter.h>
+#import <SIRequestKit/SIAffairInfo.h>
+#import <SITheme/SIColor.h>
+#import <SITheme/SIFont.h>
 #import <SIUIKit/SIAlertView.h>
+#import <SIUIKit/SIEmptyView.h>
 #import <SIUIKit/SIMessageBox.h>
 #import <SIUIKit/SINavigationBar.h>
 #import <UIKit/UIKit.h>
@@ -33,17 +38,49 @@
 
 @interface SIViewController : UIViewController <SIViewController>
 
+#pragma mark - Reload
+
 @property (nonatomic, assign) BOOL reloadWhenAppear;
+
+@property (nonatomic, assign) BOOL reloadOnce;
+
+@property (nonatomic, assign) BOOL noReloadOnce;
+
+#pragma mark - NavigationBar
 
 @property (nonatomic, assign) BOOL hideNavigationBarLine;
 
 @property (nonatomic, assign) BOOL customNaviBar;
 
+@property (nonatomic, assign) BOOL hideNavigationBar;
+
 @property (nonatomic, readonly) SINavigationBar *naviBar;
+
+#pragma mark - TabBar
+
+@property (nonatomic, assign) BOOL alwaysShowTabBar;
+
+#pragma mark - Appeared
+
+@property (nonatomic, readonly) BOOL si_viewAppeared;
+
+@property (nonatomic, assign) BOOL killWhenPushed;
+
+#pragma mark - affair
+
+@property (nonatomic, strong) SIAffairInfo *affair;
+
+#pragma mark - Reachability
+
+@property (nonatomic, assign) BOOL autoShowNetworkActivity;
+
+- (void)reachabilityHandler:(AFNetworkReachabilityStatus)status;
 
 #pragma mark - Collector
 
 @property (nonatomic, copy) NSString *pageUri;
+
+@property (nonatomic, assign) BOOL showExtraFooter;
 
 @end
 
@@ -88,6 +125,8 @@
 - (void)showMessage:(NSString *)message title:(NSString *)title;
 
 - (void)showError:(NSString *)error;
+
+- (void)showInfo:(NSString *)info;
 
 - (void)showWaiting:(NSString *)hint;
 
