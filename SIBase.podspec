@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SIBase'
-    s.version          = '0.2.17'
+    s.version          = '0.2.18'
     s.summary          = 'SIBase.'
     
     # This description is used to generate tags and improve search results.
@@ -36,7 +36,6 @@ Pod::Spec.new do |s|
     s.subspec 'Pure' do |ss|
         ss.source_files = 'SIBase/Pure/*.{h,m}'
         ss.public_header_files = 'SIBase/Pure/*.h'
-        ss.dependency 'SIUIKit/Pure'
         ss.dependency 'SITheme'
         ss.dependency 'SIDefine/Pure'
     end

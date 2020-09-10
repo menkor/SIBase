@@ -9,7 +9,6 @@
 #import <SIDefine/SIGlobalMacro.h>
 #import <SITheme/SIColor.h>
 #import <SITheme/SIFont.h>
-#import <SIUIKit/SIMessageBox.h>
 #import <UIKit/UIKit.h>
 
 @protocol SIViewController <NSObject>
