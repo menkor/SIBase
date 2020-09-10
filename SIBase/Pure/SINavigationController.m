@@ -8,7 +8,7 @@
 
 #import "SINavigationController.h"
 #import "SIViewController.h"
-#import <SIDefine/SIDefine.h>
+#import <SIDefine/SIGlobalMacro.h>
 #import <SITheme/SIColor.h>
 
 @interface SIViewController ()
@@ -64,11 +64,6 @@
     }
     SIViewController *source = (SIViewController *)self.topViewController;
     BOOL superidVC = [source isKindOfClass:[SIViewController class]];
-    if ([viewController respondsToSelector:@selector(affair)] &&
-        [source respondsToSelector:@selector(affair)] &&
-        source.affair && !viewController.affair) {
-        [viewController setAffair:source.affair];
-    }
     if (superidVC) {
         source.si_viewAppeared = NO;
     }

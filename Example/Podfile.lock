@@ -4,51 +4,19 @@ PODS:
   - CocoaLumberjack/Core (3.6.2)
   - Masonry (1.1.0)
   - MJRefresh (3.5.0)
-  - SIBase/Pure (0.2.15):
-    - SIRequestKit/Affair
+  - SIBase/Pure (0.2.16):
+    - SIDefine/Pure
     - SITheme
-    - SIUIKit
-  - SIDefine (0.1.68):
+    - SIUIKit/Pure
+  - SIDefine/Pure (0.1.72):
     - CocoaLumberjack
-  - SIRequestKit/Affair (0.11.40)
   - SITheme (0.1.12):
     - Masonry
-  - SIUIKit (0.1.86):
+  - SIUIKit/Pure (0.1.90):
     - Masonry
     - MJRefresh
-    - SIDefine
+    - SIDefine/Pure
     - SITheme
-    - YCEasyTool
-    - YYKit
-  - YCEasyTool (0.2.25):
-    - YCEasyTool/Forever (= 0.2.25)
-    - YCEasyTool/Polling (= 0.2.25)
-    - YCEasyTool/Property (= 0.2.25)
-    - YCEasyTool/Tools (= 0.2.25)
-    - YCEasyTool/UI (= 0.2.25)
-  - YCEasyTool/Forever (0.2.25):
-    - YCEasyTool/Property
-  - YCEasyTool/Polling (0.2.25)
-  - YCEasyTool/Property (0.2.25)
-  - YCEasyTool/Tools (0.2.25)
-  - YCEasyTool/UI (0.2.25):
-    - YCEasyTool/UI/CollectionView (= 0.2.25)
-    - YCEasyTool/UI/Grid (= 0.2.25)
-    - YCEasyTool/UI/PopMenu (= 0.2.25)
-    - YCEasyTool/UI/Segment (= 0.2.25)
-    - YCEasyTool/UI/TabBarController (= 0.2.25)
-    - YCEasyTool/UI/TreeMenu (= 0.2.25)
-  - YCEasyTool/UI/CollectionView (0.2.25)
-  - YCEasyTool/UI/Grid (0.2.25):
-    - YCEasyTool/Tools
-    - YCEasyTool/UI/CollectionView
-  - YCEasyTool/UI/PopMenu (0.2.25)
-  - YCEasyTool/UI/Segment (0.2.25)
-  - YCEasyTool/UI/TabBarController (0.2.25)
-  - YCEasyTool/UI/TreeMenu (0.2.25)
-  - YYKit (2.0.15):
-    - YYKit/no-arc (= 2.0.15)
-  - YYKit/no-arc (2.0.15)
 
 DEPENDENCIES:
   - SIBase/Pure (from `../`)
@@ -56,15 +24,12 @@ DEPENDENCIES:
 SPEC REPOS:
   "git@git.superid.cn:iOS/SISpecs.git":
     - SIDefine
-    - SIRequestKit
     - SITheme
     - SIUIKit
-    - YYKit
   https://github.com/CocoaPods/Specs.git:
     - CocoaLumberjack
     - Masonry
     - MJRefresh
-    - YCEasyTool
 
 EXTERNAL SOURCES:
   SIBase:
@@ -74,13 +39,10 @@ SPEC CHECKSUMS:
   CocoaLumberjack: bd155f2dd06c0e0b03f876f7a3ee55693122ec94
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
-  SIBase: 0d58075755c2e580077b3667dcb2c36d16cf0103
-  SIDefine: 7672874a5e1a6a9545559ac9d042d12834bac8b0
-  SIRequestKit: b36d9d6d5172f76d63792d1d444cc93fdd03460b
+  SIBase: b835c26544ecc135d596538de87b92f378a21142
+  SIDefine: ec820deee588963e2ffedef103345a373f961c63
   SITheme: ba6af9ea3f003d21e0a8a599a7bcf93940b08c52
-  SIUIKit: 3dc3f8c950101f51242144cf6b192f6846b97337
-  YCEasyTool: 2a228b5f75fd15d92010103b9e5eb3205ac2cb36
-  YYKit: 7609c2a3516cb0fd6f13da7bfa3188029a83863b
+  SIUIKit: 6d521382d146f4f8108859d9f3566da127f8a6a2
 
 PODFILE CHECKSUM: 7229887de0c73f3797859c23898706d77c75cbd7
 

@@ -9,11 +9,8 @@
 #import "SIViewController.h"
 #import "SINavigationController.h"
 #import <Masonry/Masonry.h>
-#import <SICollector/SICollector.h>
 #import <SIDefine/SIGlobalEvent.h>
-#import <SIRequestCenter/SIRequestCenter.h>
 #import <SITheme/SIColor.h>
-#import <SIUtils/NSObject+SIKit.h>
 
 @interface SINavigationController ()
 
@@ -48,8 +45,6 @@
 @end
 
 @interface SIViewController () <SIControllerViewViewHitTestDelegate>
-
-@property (nonatomic, strong) SINavigationBar *naviBar;
 
 @property (nonatomic, assign) BOOL si_viewAppeared;
 
@@ -87,19 +82,13 @@
     [self navigationBarHandler];
     self.navigationController.navigationBar.translucent = YES;
     [self defaultUI];
-    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager manager];
-    __weak __typeof__(self) weak_self = self;
-    [reachabilityManager startMonitoring];
-    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        [weak_self reachabilityHandler:status];
-    }];
     // Do any additional setup after loading the view.
 }
 
 - (void)navigationBarHandler {
     if ([self.parentViewController isKindOfClass:[UINavigationController class]]) {
         if (self.navigationController.topViewController == self) {
-            self.navigationController.navigationBarHidden = _customNaviBar || _hideNavigationBar;
+            self.navigationController.navigationBarHidden = _hideNavigationBar;
         }
     }
 }
@@ -111,9 +100,6 @@
         [self showNavigationBarLine:NO];
     }
     [self navigationBarHandler];
-    if (self.affair) {
-        [self.affair si_push];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -125,29 +111,6 @@
             [self loadData];
             _reloadOnce = NO;
         }
-    }
-    [self eventTracking];
-}
-
-- (void)setAutoShowNetworkActivity:(BOOL)autoShowNetworkActivity {
-    _autoShowNetworkActivity = autoShowNetworkActivity;
-    if (_autoShowNetworkActivity) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_requestStatus:) name:kSIRequestStatusMessage object:nil];
-    } else {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kSIRequestStatusMessage object:nil];
-    }
-}
-
-- (void)_requestStatus:(NSNotification *)sender {
-    if (!_si_viewAppeared) {
-        return;
-    }
-    NSDictionary *userInfo = [sender object];
-    SIRequestStatus status = [userInfo[@"status"] integerValue];
-    if (status == SIRequestStatusBegin) {
-        [SIMessageBox showWaiting:nil hideAfterDelay:5];
-    } else {
-        [SIMessageBox hideWaiting];
     }
 }
 
@@ -166,9 +129,6 @@
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:YES];
     }
-}
-
-- (void)reachabilityHandler:(AFNetworkReachabilityStatus)status {
 }
 
 - (void)loadData {
@@ -208,11 +168,6 @@
 
 #pragma mark Did Set
 
-- (void)setAffair:(SIAffairInfo *)affair {
-    _affair = affair;
-    [affair si_push];
-}
-
 - (void)setReloadWhenAppear:(BOOL)reloadWhenAppear {
     if (reloadWhenAppear == _reloadWhenAppear) {
         return;
@@ -220,26 +175,6 @@
     _reloadWhenAppear = reloadWhenAppear;
     if (!_reloadWhenAppear) {
         [self loadData];
-    }
-}
-
-- (void)setCustomNaviBar:(BOOL)customNaviBar {
-    _customNaviBar = customNaviBar;
-    if (_customNaviBar && !_naviBar) {
-        _naviBar = [SINavigationBar create];
-        _naviBar.owner = self;
-        [_naviBar setTheme:SINavigationThemeClear];
-        [self.view addSubview:_naviBar];
-        CGFloat height = 44.0;
-        height += IS_IPHONE_X() ? kStatusBarHeight : 20;
-        [_naviBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.mas_equalTo(self.view);
-            make.height.mas_equalTo(height);
-        }];
-        NSArray *viewControllers = self.navigationController.viewControllers;
-        if (viewControllers.count > 1 && viewControllers.lastObject == self) {
-            [_naviBar.left.add itemWithType:SINavigationItemTypeCustomImage resource:@"ic_back_chevron" selector:@selector(goBack)];
-        }
     }
 }
 
@@ -274,106 +209,6 @@
         viewControllerToPresent.modalPresentationStyle = UIModalPresentationFullScreen;
     }
     [super presentViewController:viewControllerToPresent animated:flag completion:completion];
-}
-
-@end
-
-@implementation SIViewController (SIAlert)
-
-- (void)alert:(NSString *)message
-     okButton:(NSString *)buttonTitle
-      handler:(void (^)(SIAlertAction *action))handler {
-    [self alert:message okButton:buttonTitle cancelButton:@"取消" handler:handler];
-}
-
-- (void)alertArray:(NSMutableArray<NSString *> *)messageArray
-          okButton:(NSString *)buttonTitle
-           handler:(void (^)(SIAlertAction *action))handler {
-    if (messageArray.count > 0) {
-        NSString *message = messageArray.firstObject;
-        [messageArray removeObjectAtIndex:0];
-        [self alert:message
-                okButton:buttonTitle
-            cancelButton:@"取消"
-                 handler:^(SIAlertAction *action) {
-                     if (messageArray.count > 0) {
-                         [self alertArray:messageArray okButton:buttonTitle handler:handler];
-                     } else {
-                         handler(action);
-                     }
-                 }];
-    }
-}
-
-- (void)alert:(NSString *)message
-        okButton:(NSString *)okButtonTitle
-    cancelButton:(NSString *)cancelButtonTitle
-         handler:(void (^)(SIAlertAction *action))handler {
-    SIAlertView *alert = [SIAlertView alertControllerWithTitle:nil message:message];
-    [alert addAction:[SIAlertAction actionWithTitle:okButtonTitle
-                                              style:SIAlertActionStyleDefault
-                                            handler:handler]];
-    [alert addAction:[SIAlertAction actionWithTitle:cancelButtonTitle
-                                              style:SIAlertActionStyleCancel
-                                            handler:[cancelButtonTitle isEqualToString:@"取消"] ? nil : handler]];
-    [self.view endEditing:YES];
-    [alert show];
-}
-
-- (void)alert:(NSString *)message
-    okButtonArray:(NSArray *)okButtonTitleArray
-     cancelButton:(NSString *)cancelButtonTitle
-          handler:(void (^)(SIAlertAction *action))handler {
-    SIAlertView *alert = [SIAlertView alertControllerWithTitle:nil message:message];
-    for (NSString *obj in okButtonTitleArray) {
-        [alert addAction:[SIAlertAction actionWithTitle:obj
-                                                  style:SIAlertActionStyleDefault
-                                                handler:handler]];
-    }
-
-    [alert addAction:[SIAlertAction actionWithTitle:cancelButtonTitle
-                                              style:SIAlertActionStyleCancel
-                                            handler:[cancelButtonTitle isEqualToString:@"取消"] ? nil : handler]];
-    [self.view endEditing:YES];
-    [alert show];
-}
-
-- (void)showMessage:(NSString *)message title:(NSString *)title {
-    [self.view endEditing:YES];
-    SIMessageBox *box = [SIMessageBox boxWithType:SIMessageBoxStatusSuccess title:title message:message];
-    [box show];
-}
-
-- (void)showMessage:(NSString *)message {
-    if (self.viewLoaded) {
-        [self.view endEditing:YES];
-    }
-    [SIMessageBox showMessage:message];
-}
-
-- (void)showError:(NSString *)error {
-    if (self.viewLoaded) {
-        [self.view endEditing:YES];
-    }
-    [SIMessageBox showError:error];
-}
-
-- (void)showInfo:(NSString *)info {
-    if (self.viewLoaded) {
-        [self.view endEditing:YES];
-    }
-    [SIMessageBox showInfo:info];
-}
-
-- (void)showWaiting:(NSString *)hint {
-    if (self.viewLoaded) {
-        [self.view endEditing:YES];
-    }
-    [SIMessageBox showWaiting:hint];
-}
-
-- (void)hideWaiting {
-    [SIMessageBox hideWaiting];
 }
 
 @end

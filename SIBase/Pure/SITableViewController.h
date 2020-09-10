@@ -8,7 +8,6 @@
 
 #import "SIBaseTableViewDefine.h"
 #import "SIViewController.h"
-#import <SIUIKit/SIEmptyView.h>
 #import <UIKit/UIKit.h>
 
 @interface SITableViewController : SIViewController <UITableViewDelegate, UITableViewDataSource>
