@@ -72,7 +72,7 @@
 
 #pragma mark - Reachability
 
-@property (nonatomic, assign) BOOL autoShowNetworkActivity;
+@property (nonatomic, assign) BOOL monitorNetwork;
 
 - (void)reachabilityHandler:(AFNetworkReachabilityStatus)status;
 

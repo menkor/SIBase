@@ -55,6 +55,8 @@
 
 @property (nonatomic, assign) BOOL si_customHitTest;
 
+@property (nonatomic, strong) AFNetworkReachabilityManager *si_reachabilityManager;
+
 @end
 
 @implementation SIViewController
@@ -87,13 +89,24 @@
     [self navigationBarHandler];
     self.navigationController.navigationBar.translucent = YES;
     [self defaultUI];
-    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager manager];
-    __weak __typeof__(self) weak_self = self;
-    [reachabilityManager startMonitoring];
-    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        [weak_self reachabilityHandler:status];
-    }];
+
     // Do any additional setup after loading the view.
+}
+
+- (void)setMonitorNetwork:(BOOL)monitorNetwork {
+    _monitorNetwork = monitorNetwork;
+    if (monitorNetwork) {
+        AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager manager];
+        __weak __typeof__(self) weak_self = self;
+        [reachabilityManager startMonitoring];
+        [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            [weak_self reachabilityHandler:status];
+        }];
+        self.si_reachabilityManager = reachabilityManager;
+    } else {
+        [self.si_reachabilityManager stopMonitoring];
+        self.si_reachabilityManager = nil;
+    }
 }
 
 - (void)navigationBarHandler {
@@ -109,6 +122,9 @@
     self.si_viewAppeared = YES;
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:NO];
+    }
+    if (self.monitorNetwork) {
+        [self.si_reachabilityManager startMonitoring];
     }
     [self navigationBarHandler];
     if (self.affair) {
@@ -129,28 +145,6 @@
     [self eventTracking];
 }
 
-- (void)setAutoShowNetworkActivity:(BOOL)autoShowNetworkActivity {
-    _autoShowNetworkActivity = autoShowNetworkActivity;
-    if (_autoShowNetworkActivity) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_requestStatus:) name:kSIRequestStatusMessage object:nil];
-    } else {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kSIRequestStatusMessage object:nil];
-    }
-}
-
-- (void)_requestStatus:(NSNotification *)sender {
-    if (!_si_viewAppeared) {
-        return;
-    }
-    NSDictionary *userInfo = [sender object];
-    SIRequestStatus status = [userInfo[@"status"] integerValue];
-    if (status == SIRequestStatusBegin) {
-        [SIMessageBox showWaiting:nil hideAfterDelay:5];
-    } else {
-        [SIMessageBox hideWaiting];
-    }
-}
-
 - (void)showNavigationBarLine:(BOOL)show {
     if (![self.parentViewController isKindOfClass:[SINavigationController class]]) {
         return;
@@ -162,6 +156,9 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.si_viewAppeared = NO;
+    if (self.monitorNetwork) {
+        [self.si_reachabilityManager stopMonitoring];
+    }
     [self.view endEditing:YES];
     if (_hideNavigationBarLine) {
         [self showNavigationBarLine:YES];
