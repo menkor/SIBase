@@ -197,11 +197,11 @@
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.0001;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.0001;
+    return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

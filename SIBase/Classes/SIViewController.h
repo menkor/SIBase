@@ -82,6 +82,8 @@
 
 @property (nonatomic, assign) BOOL showExtraFooter;
 
+@property (nonatomic, assign) BOOL disableAuditFloatWindow;
+
 @end
 
 @interface SIViewController (SIAlert)

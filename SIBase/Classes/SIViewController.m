@@ -143,6 +143,8 @@
         }
     }
     [self eventTracking];
+    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
+    [UIViewController attemptRotationToDeviceOrientation];
 }
 
 - (void)showNavigationBarLine:(BOOL)show {
@@ -187,11 +189,14 @@
 }
 
 - (void)goBack {
-    SINavigationController *navi = self.navigationController;
-    if (navi.si_isBeingPresented && navi.viewControllers.count == 1) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        return;
+    if ([self.navigationController isKindOfClass:[SINavigationController class]]) {
+        SINavigationController *navi = self.navigationController;
+        if (navi.si_isBeingPresented && navi.viewControllers.count == 1) {
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            return;
+        }
     }
+    UINavigationController *navi = self.navigationController;
     [navi popViewControllerAnimated:YES];
 }
 
@@ -240,6 +245,17 @@
     }
 }
 
+- (void)viewLayoutMarginsDidChange {
+    [super viewLayoutMarginsDidChange];
+    if (_customNaviBar && _naviBar) {
+        CGFloat height = 44.0;
+        height += IS_IPHONE_X() ? kStatusBarHeight : 20;
+        [_naviBar mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(height);
+        }];
+    }
+}
+
 - (void)setHideNavigationBarLine:(BOOL)hideNavigationBarLine {
     _hideNavigationBarLine = hideNavigationBarLine;
     [self showNavigationBarLine:!hideNavigationBarLine];
@@ -254,7 +270,7 @@
 }
 
 - (BOOL)shouldAutorotate {
-    return NO;
+    return YES;
 }
 
 // Which screen directions are supported.
